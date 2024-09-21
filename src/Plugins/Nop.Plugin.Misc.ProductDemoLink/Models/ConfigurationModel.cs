@@ -3,7 +3,7 @@ using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics.Models;
+namespace Nop.Plugin.Misc.ProductDemoLink.Models;
 
 public record ConfigurationModel : BaseNopModel
 {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Nop.Core;
+using Nop.Plugin.Misc.ProductDemoLink;
 using Nop.Plugin.Widgets.GoogleAnalytics.Api.Models;
 
 namespace Nop.Plugin.Widgets.GoogleAnalytics.Api;

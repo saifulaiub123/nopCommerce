@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Logging;
+using Nop.Plugin.Misc.ProductDemoLink.Domain;
 using Nop.Services.Customers;
 using Nop.Services.Logging;
 using Nop.Web.Framework.Components;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics.Components;
+namespace Nop.Plugin.Misc.ProductDemoLink.Components;
 
 public class WidgetsGoogleAnalyticsViewComponent : NopViewComponent
 {
@@ -73,8 +74,8 @@ public class WidgetsGoogleAnalyticsViewComponent : NopViewComponent
     /// <returns>A task that represents the asynchronous operation</returns>
     public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
     {
-        var script = await GetScriptAsync();
-        return View("~/Plugins/Misc.ProductDemoLink/Views/CreateOrUpdate.cshtml", script);
+        var model = new ProductDemo();
+        return View("~/Plugins/Misc.ProductDemoLink/Views/CreateOrUpdate.cshtml", model);
     }
 
     #endregion
