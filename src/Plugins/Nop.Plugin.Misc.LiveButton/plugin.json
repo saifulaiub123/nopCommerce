@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Add live button for digital product",
+  "SystemName": "Misc.LiveButton",
+  "Version": "4.80.2",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "MD Saiful Islam",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.LiveButton.dll",
+  "Description": "Live button for digital product"
+}

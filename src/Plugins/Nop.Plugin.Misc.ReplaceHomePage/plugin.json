@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Replace Home Page",
+  "SystemName": "Misc.ReplaceHomePage",
+  "Version": "4.80.2",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "MD Saiful Islam",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.ReplaceHomePage.dll",
+  "Description": "Replace home page"
+}
