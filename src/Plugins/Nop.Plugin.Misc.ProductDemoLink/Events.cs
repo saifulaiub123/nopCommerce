@@ -17,7 +17,7 @@ using Nop.Services.Logging;
 using Nop.Services.Orders;
 using Nop.Services.Stores;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics;
+namespace Nop.Plugin.Misc.ProductDemoLink;
 
 public class EventConsumer :
     IConsumer<OrderPlacedEvent>,

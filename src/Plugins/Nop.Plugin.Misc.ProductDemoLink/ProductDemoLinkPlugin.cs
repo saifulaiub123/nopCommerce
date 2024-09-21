@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Cms;
-using Nop.Plugin.Widgets.GoogleAnalytics.Components;
+using Nop.Plugin.Misc.ProductDemoLink.Component;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
 using Nop.Web.Framework.Infrastructure;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics;
+namespace Nop.Plugin.Misc.ProductDemoLink;
 
 /// <summary>
 /// Google Analytics plugin
@@ -82,7 +82,7 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
         ArgumentNullException.ThrowIfNull(widgetZone);
 
         if (widgetZone.Equals(AdminWidgetZones.ProductDetailsBlock))
-            return typeof(WidgetsGoogleAnalyticsViewComponent);
+            return typeof(ProductDemoLinkViewComponent);
 
         return null;
     }

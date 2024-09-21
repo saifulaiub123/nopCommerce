@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
-using Nop.Plugin.Widgets.GoogleAnalytics.Models;
+using Nop.Plugin.Misc.ProductDemoLink.Models;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -9,7 +9,7 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers;
+namespace Nop.Plugin.Misc.ProductDemoLink.Controllers;
 
 [Area(AreaNames.ADMIN)]
 [AuthorizeAdmin]

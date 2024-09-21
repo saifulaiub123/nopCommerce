@@ -1,4 +1,4 @@
-﻿namespace Nop.Plugin.Widgets.GoogleAnalytics;
+﻿namespace Nop.Plugin.Misc.ProductDemoLink;
 
 /// <summary>
 /// Represents plugin constants

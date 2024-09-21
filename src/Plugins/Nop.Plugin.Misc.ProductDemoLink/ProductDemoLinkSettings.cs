@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics;
+namespace Nop.Plugin.Misc.ProductDemoLink;
 
 public class ProductDemoLinkSettings : ISettings
 {

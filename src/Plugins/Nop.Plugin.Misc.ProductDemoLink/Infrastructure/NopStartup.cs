@@ -5,7 +5,7 @@ using Nop.Core.Infrastructure;
 using Nop.Plugin.Widgets.GoogleAnalytics.Api;
 using Nop.Web.Framework.Infrastructure.Extensions;
 
-namespace Nop.Plugin.Widgets.GoogleAnalytics.Infrastructure;
+namespace Nop.Plugin.Misc.ProductDemoLink.Infrastructure;
 
 /// <summary>
 /// Represents object for the configuring services on application startup
@@ -19,7 +19,7 @@ public class NopStartup : INopStartup
     /// <param name="configuration">Configuration of the application</param>
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpClient<GoogleAnalyticsHttpClient>().WithProxy();
+        
     }
 
     /// <summary>
