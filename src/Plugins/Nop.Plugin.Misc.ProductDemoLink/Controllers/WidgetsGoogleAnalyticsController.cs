@@ -51,7 +51,7 @@ public class WidgetsGoogleAnalyticsController : BasePluginController
     {
         //load settings for a chosen store scope
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
-        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<GoogleAnalyticsSettings>(storeScope);
+        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<ProductDemoLinkSettings>(storeScope);
 
         var model = new ConfigurationModel
         {
@@ -85,7 +85,7 @@ public class WidgetsGoogleAnalyticsController : BasePluginController
     {
         //load settings for a chosen store scope
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
-        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<GoogleAnalyticsSettings>(storeScope);
+        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<ProductDemoLinkSettings>(storeScope);
 
         googleAnalyticsSettings.GoogleId = model.GoogleId;
         googleAnalyticsSettings.ApiSecret = model.ApiSecret;

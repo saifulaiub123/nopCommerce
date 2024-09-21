@@ -74,7 +74,7 @@ public class EventConsumer :
         return await _widgetPluginManager.IsPluginActiveAsync(ProductDemoLinkDefaults.SystemName);
     }
 
-    protected async Task SaveCookiesAsync(Order order, GoogleAnalyticsSettings googleAnalyticsSettings, Store store)
+    protected async Task SaveCookiesAsync(Order order, ProductDemoLinkSettings googleAnalyticsSettings, Store store)
     {
         //try to get cookie
         var httpContext = _httpContextAccessor.HttpContext;
@@ -91,7 +91,7 @@ public class EventConsumer :
     }
 
     /// <returns>A task that represents the asynchronous operation</returns>
-    protected async Task ProcessOrderEventAsync(Order order, GoogleAnalyticsSettings googleAnalyticsSettings, string eventName)
+    protected async Task ProcessOrderEventAsync(Order order, ProductDemoLinkSettings googleAnalyticsSettings, string eventName)
     {
         try
         {
@@ -180,7 +180,7 @@ public class EventConsumer :
 
         //settings per store
         var store = await _storeService.GetStoreByIdAsync(order.StoreId) ?? await _storeContext.GetCurrentStoreAsync();
-        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<GoogleAnalyticsSettings>(store.Id);
+        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<ProductDemoLinkSettings>(store.Id);
 
         //ecommerce is disabled
         if (!googleAnalyticsSettings.EnableEcommerce)
@@ -208,7 +208,7 @@ public class EventConsumer :
 
         //settings per store
         var store = await _storeService.GetStoreByIdAsync(order.StoreId) ?? await _storeContext.GetCurrentStoreAsync();
-        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<GoogleAnalyticsSettings>(store.Id);
+        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<ProductDemoLinkSettings>(store.Id);
 
         //ecommerce is disabled
         if (!googleAnalyticsSettings.EnableEcommerce)
@@ -233,7 +233,7 @@ public class EventConsumer :
 
         //settings per store
         var store = await _storeService.GetStoreByIdAsync(order.StoreId) ?? await _storeContext.GetCurrentStoreAsync();
-        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<GoogleAnalyticsSettings>(store.Id);
+        var googleAnalyticsSettings = await _settingService.LoadSettingAsync<ProductDemoLinkSettings>(store.Id);
 
         //ecommerce is disabled
         if (!googleAnalyticsSettings.EnableEcommerce)

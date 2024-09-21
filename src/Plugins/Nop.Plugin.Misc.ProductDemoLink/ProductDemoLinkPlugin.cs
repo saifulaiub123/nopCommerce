@@ -15,7 +15,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics;
 /// <summary>
 /// Google Analytics plugin
 /// </summary>
-public class GoogleAnalyticsPlugin : BasePlugin, IWidgetPlugin
+public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
 {
     #region Fields
 
@@ -30,7 +30,7 @@ public class GoogleAnalyticsPlugin : BasePlugin, IWidgetPlugin
 
     #region Ctor
 
-    public GoogleAnalyticsPlugin(IActionContextAccessor actionContextAccessor,
+    public ProductDemoLinkPlugin(IActionContextAccessor actionContextAccessor,
         ILocalizationService localizationService,
         IWebHelper webHelper,
         ISettingService settingService,
@@ -149,7 +149,7 @@ public class GoogleAnalyticsPlugin : BasePlugin, IWidgetPlugin
             _widgetSettings.ActiveWidgetSystemNames.Remove(ProductDemoLinkDefaults.SystemName);
             await _settingService.SaveSettingAsync(_widgetSettings);
         }
-        await _settingService.DeleteSettingAsync<GoogleAnalyticsSettings>();
+        await _settingService.DeleteSettingAsync<ProductDemoLinkSettings>();
 
         //locales
         await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.ProductDemoLink");

@@ -11,7 +11,7 @@ public class WidgetsGoogleAnalyticsViewComponent : NopViewComponent
 {
     #region Fields
 
-    protected readonly GoogleAnalyticsSettings _googleAnalyticsSettings;
+    protected readonly ProductDemoLinkSettings _googleAnalyticsSettings;
     protected readonly ICustomerService _customerService;
     protected readonly ILogger _logger;
     protected readonly IWorkContext _workContext;
@@ -21,7 +21,7 @@ public class WidgetsGoogleAnalyticsViewComponent : NopViewComponent
     #region Ctor
 
     public WidgetsGoogleAnalyticsViewComponent(
-        GoogleAnalyticsSettings googleAnalyticsSettings,
+        ProductDemoLinkSettings googleAnalyticsSettings,
         ICustomerService customerService,
         ILogger logger,
         IWorkContext workContext)
@@ -74,7 +74,7 @@ public class WidgetsGoogleAnalyticsViewComponent : NopViewComponent
     public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
     {
         var script = await GetScriptAsync();
-        return View("~/Plugins/Widgets.GoogleAnalytics/Views/PublicInfo.cshtml", script);
+        return View("~/Plugins/Misc.ProductDemoLink/Views/CreateOrUpdate.cshtml", script);
     }
 
     #endregion
