@@ -2,7 +2,7 @@
 
 namespace Nop.Plugin.Widgets.GoogleAnalytics;
 
-public class GoogleAnalyticsSettings : ISettings
+public class ProductDemoLinkSettings : ISettings
 {
     public string GoogleId { get; set; }
     public string ApiSecret { get; set; }

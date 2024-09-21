@@ -34,7 +34,7 @@ public class GoogleAnalyticsHttpClient
     /// <param name="request">Event Request</param>
     /// <param name="googleAnalyticsSettings">Google Analytics settings</param>
     /// <returns>The asynchronous task whose result contains response details</returns>
-    public async Task RequestAsync(EventRequest request, GoogleAnalyticsSettings googleAnalyticsSettings)
+    public async Task RequestAsync(EventRequest request, ProductDemoLinkSettings googleAnalyticsSettings)
     {
         //configure client
         try
