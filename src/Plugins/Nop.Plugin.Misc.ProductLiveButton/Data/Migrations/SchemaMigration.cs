@@ -1,9 +1,9 @@
 ﻿using FluentMigrator;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
-using Nop.Plugin.Misc.ProductDemoLink.Domain;
+using Nop.Plugin.Misc.ProductLiveButton.Domain;
 
-namespace Nop.Plugin.Misc.ProductDemoLink.Data.Migrations;
+namespace Nop.Plugin.Misc.ProductLiveButton.Data.Migrations;
 
 [NopMigration("2024/09/21 08:45:00", "Nop.Plugin.Misc.LiveButton Schema", MigrationProcessType.Installation)]
 
@@ -11,7 +11,7 @@ public class SchemaMigration : AutoReversingMigration
 {
     public override void Up()
     {
-        //Create.TableFor<ProductDemo>();
+        Create.TableFor<ProductDemo>();
     }
 
 }
