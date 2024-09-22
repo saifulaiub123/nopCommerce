@@ -3,19 +3,20 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Cms;
-using Nop.Plugin.Misc.ProductDemoLink.Component;
+using Nop.Plugin.Misc.ProductLiveButton;
+using Nop.Plugin.Misc.ProductLiveButton.Component;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
 using Nop.Web.Framework.Infrastructure;
 
-namespace Nop.Plugin.Misc.ProductDemoLink;
+namespace Nop.Plugin.Misc.ProductLiveButton;
 
 /// <summary>
 /// Google Analytics plugin
 /// </summary>
-public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
+public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
 {
     #region Fields
 
@@ -30,7 +31,7 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
 
     #region Ctor
 
-    public ProductDemoLinkPlugin(IActionContextAccessor actionContextAccessor,
+    public ProductLiveButtonPlugin(IActionContextAccessor actionContextAccessor,
         ILocalizationService localizationService,
         IWebHelper webHelper,
         ISettingService settingService,
@@ -69,7 +70,7 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
     /// </summary>
     public override string GetConfigurationPageUrl()
     {
-        return _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext).RouteUrl(ProductDemoLinkDefaults.ConfigurationRouteName);
+        return _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext).RouteUrl(ProductLiveButtonDefaults.ConfigurationRouteName);
     }
 
     /// <summary>
@@ -82,7 +83,7 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
         ArgumentNullException.ThrowIfNull(widgetZone);
 
         if (widgetZone.Equals(AdminWidgetZones.ProductDetailsBlock))
-            return typeof(ProductDemoLinkViewComponent);
+            return typeof(ProductLiveButtonViewComponent);
 
         return null;
     }
@@ -109,17 +110,17 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
     //    };
     //    await _settingService.SaveSettingAsync(settings);
 
-        if (!_widgetSettings.ActiveWidgetSystemNames.Contains(ProductDemoLinkDefaults.SystemName))
+        if (!_widgetSettings.ActiveWidgetSystemNames.Contains(ProductLiveButtonDefaults.SystemName))
         {
-            _widgetSettings.ActiveWidgetSystemNames.Add(ProductDemoLinkDefaults.SystemName);
+            _widgetSettings.ActiveWidgetSystemNames.Add(ProductLiveButtonDefaults.SystemName);
             await _settingService.SaveSettingAsync(_widgetSettings);
         }
 
         await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
         {
-            ["Plugins.Misc.ProductDemoLink.Title"] = "Product demo link",
-            ["Plugins.Misc.ProductDemoLink.DemoLink"] = "Link",
-            ["Plugins.Misc.ProductDemoLink.ShowInProductPictureBottom"] = "Show link on Picture",
+            ["Plugins.Misc.ProductLiveButton.Title"] = "Product demo link",
+            ["Plugins.Misc.ProductLiveButton.DemoLink"] = "Link",
+            ["Plugins.Misc.ProductLiveButton.ShowInProductPictureBottom"] = "Show link on Picture",
         });
 
         await base.InstallAsync();
@@ -132,15 +133,15 @@ public class ProductDemoLinkPlugin : BasePlugin, IWidgetPlugin
     public override async Task UninstallAsync()
     {
         //settings
-        if (_widgetSettings.ActiveWidgetSystemNames.Contains(ProductDemoLinkDefaults.SystemName))
+        if (_widgetSettings.ActiveWidgetSystemNames.Contains(ProductLiveButtonDefaults.SystemName))
         {
-            _widgetSettings.ActiveWidgetSystemNames.Remove(ProductDemoLinkDefaults.SystemName);
+            _widgetSettings.ActiveWidgetSystemNames.Remove(ProductLiveButtonDefaults.SystemName);
             await _settingService.SaveSettingAsync(_widgetSettings);
         }
-        await _settingService.DeleteSettingAsync<ProductDemoLinkSettings>();
+        await _settingService.DeleteSettingAsync<ProductLiveButtonSettings>();
 
         //locales
-        await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.ProductDemoLink");
+        await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.ProductLiveButton");
 
         await base.UninstallAsync();
     }

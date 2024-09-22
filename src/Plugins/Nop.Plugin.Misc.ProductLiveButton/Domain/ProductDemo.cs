@@ -2,7 +2,7 @@
 using Nop.Core;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace Nop.Plugin.Misc.ProductDemoLink.Domain;
+namespace Nop.Plugin.Misc.ProductLiveButton.Domain;
 public class ProductDemo : BaseEntity
 {
     public int ProductId { get; set; }
