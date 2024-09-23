@@ -25,30 +25,6 @@ public class MyActionFilter : ActionFilterAttribute
         _productDemoService = productDemoService;
     }
 
-    public void OnActionExecuting(ActionExecutingContext context)
-    {
-        //string parameter1;
-        //if (context.ActionArguments.TryGetValue("parameter1", out (object)parameter1))
-        //{
-        //    // parameter1 value was found
-        //}
-        //else
-        //{
-        //    // parameter1 value was not found
-        //}
-    }
-    public override void OnResultExecuting(ResultExecutingContext context)
-    {
-        // TODO only proceed if we are on the ProductDetails Action Method in the ProductController
-
-        var result = context.Result as ViewResult;
-        if (result == null)
-            return;
-        var model = result.Model as ProductDemoModel;
-        if (model == null)
-            return;
-        //model.Name += " - This is magic from a Custom Action Filter";
-    }
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         var t = context;
