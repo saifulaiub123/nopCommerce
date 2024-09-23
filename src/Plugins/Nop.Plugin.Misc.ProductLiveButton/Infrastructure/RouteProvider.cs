@@ -17,9 +17,9 @@ public class RouteProvider : BaseRouteProvider, IRouteProvider
     /// <param name="endpointRouteBuilder">Route builder</param>
     public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapControllerRoute(name: ProductLiveButtonDefaults.ConfigurationRouteName,
-            pattern: "Admin/WidgetsGoogleAnalytics/Configure",
-            defaults: new { controller = "WidgetsGoogleAnalytics", action = "Configure", area = AreaNames.ADMIN });
+        endpointRouteBuilder.MapControllerRoute(name: ProductLiveButtonDefaults.AddProductDemoRoutName,
+            pattern: "Admin/ProductDemoLink/AddProductDemo",
+            defaults: new { controller = "ProductDemoLink", action = "AddProductDemo", area = AreaNames.ADMIN });
     }
 
     /// <summary>

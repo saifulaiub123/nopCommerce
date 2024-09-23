@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
-using Nop.Plugin.Widgets.GoogleAnalytics.Api;
-using Nop.Web.Framework.Infrastructure.Extensions;
+using Nop.Plugin.Misc.ProductLiveButton.Services;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Infrastructure;
 
@@ -19,7 +19,11 @@ public class NopStartup : INopStartup
     /// <param name="configuration">Configuration of the application</param>
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        
+        services.AddScoped<IProductDemoService, ProductDemoService>();
+        services.Configure<MvcOptions>(options =>
+        {
+            options.Filters.Add<MyActionFilter>();
+        });
     }
 
     /// <summary>

@@ -1,12 +1,10 @@
 ﻿@model ProductDemoModel
 
 <nop-card asp-name="product-demolink" asp-icon="fas fa-truck" asp-title="@T("Plugins.Misc.ProductLiveButton.Title")" asp-hide-block-attribute-name="ProductLiveButton.HideProductBlock" asp-hide="false" asp-advanced="false">
-    <div class="card-body">
         <div class="card card-default no-margin">
-            <div class="card-header">
-                @T("Plugins.Misc.ProductLiveButton.Title")
-            </div>
             <div class="card-body">
+            @if (Model.ProductId > 0)
+            {
                 <div class="form-group row" id="pdlDemoLink">
                     <div class="col-md-3">
                         <nop-label asp-for="DemoLink" />
@@ -25,8 +23,51 @@
                         <span asp-validation-for="ShowInProductPictureBottom"></span>
                     </div>
                 </div>
+            }
+            else
+            {
+                <div class="card card-default">
+                    <div class="card-body">
+                        @T("Plugins.Misc.ProductLiveButton.SaveBeforeEdit")
+                    </div>
+                </div>
+            }
+            <script>
+                $(function () {
+                    alert();
+                    $('form').on('submit', function (event) {
+                        //event.preventDefault();
+                        alert();
+                        debugger;
+                        var postData = {
+                            ProductId: $("#@Html.IdFor(model => model.ProductId)").val(),
+                            DemoLink: $("#@Html.IdFor(model => model.DemoLink)").val(),
+                            ShowInProductPictureBottom: $("#@Html.IdFor(model => model.ShowInProductPictureBottom)").val()
+                        };
+                        addAntiForgeryToken(postData);
+
+                        // $.ajax({
+                        //     cache: false,
+                        //     type: "POST",
+                        //     url: "@Html.Raw(Url.Action("AddProductDemo", "ProductDemoLink"))",
+                        //     data: postData,
+                        //     success: function (data, textStatus, jqXHR) {
+                        //         if (data.Result) {
+
+                        //         } else {
+
+                        //             display_nop_error(data);
+                        //         }
+                        //     },
+                        //     complete: function (jqXHR, textStatus) {
+
+                        //     }
+                        // });
+                    });
+                    // $(this).submit();
+                })
                 
-            </div>
+            </script>
         </div>
-    </div>
+        </div>
 </nop-card>

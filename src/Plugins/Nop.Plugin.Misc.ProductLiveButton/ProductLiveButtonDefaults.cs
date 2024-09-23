@@ -14,6 +14,7 @@ public static class ProductLiveButtonDefaults
     /// Gets the configuration route name
     /// </summary>
     public static string ConfigurationRouteName => "Plugin.Misc.ProductLiveButton.Configure";
+    public static string AddProductDemoRoutName => "Plugin.Misc.ProductLiveButton.AddProductDemo";
 
     /// <summary>
     /// Gets a URL to send data using the Measurement Protocol on Google account
@@ -44,6 +45,8 @@ public static class ProductLiveButtonDefaults
     /// Gets a name of the cookies "session_id"
     /// </summary>
     public static string SessionIdCookiesName => "_ga_";
+    public static string ProductDemoUpdateSessionKey => "_productDemoUpdateSessionKey{0}_";
+    public static string ProductAddOrUpdateSuccessSessionKey => "_productAddOrUpdateSuccessSessionKey_";
 
     /// <summary>
     /// Gets a key of the attribute to store client_id
