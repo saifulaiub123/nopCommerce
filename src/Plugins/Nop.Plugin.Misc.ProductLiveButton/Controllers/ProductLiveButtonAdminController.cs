@@ -15,13 +15,18 @@ using Nop.Services.Messages;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Localization;
+using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using Nop.Web.Framework.Validators;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Controllers;
-public class ProductDemoLinkController : BasePluginController
+
+[Area(AreaNames.ADMIN)]
+[AuthorizeAdmin]
+[AutoValidateAntiforgeryToken]
+public class ProductLiveButtonAdminController : BasePluginController
 {
     #region Fields
 
@@ -36,7 +41,7 @@ public class ProductDemoLinkController : BasePluginController
 
     #region Ctor
 
-    public ProductDemoLinkController(
+    public ProductLiveButtonAdminController(
         ILocalizationService localizationService,
         INotificationService notificationService,
         IPermissionService permissionService,
@@ -56,17 +61,21 @@ public class ProductDemoLinkController : BasePluginController
 
     #region Methods
 
-    [HttpPost]
-    [CheckPermission(StandardPermission.Configuration.MANAGE_PLUGINS)]
-    public virtual async Task<IActionResult> AddProductDemo(ProductDemoModel model)
+    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
+    public async Task<IActionResult> Configure()
     {
-        if (!ModelState.IsValid)
-        {
-            return ErrorJson(ModelState.SerializeErrors());
-        }
-        await _productDemoService.AddOrUpdateAsync(model);
+        
 
-        return Json(new { Result = true });
+        return View("~/Plugins/Widgets.GoogleAnalytics/Views/Configure.cshtml");
+    }
+
+    [HttpPost]
+    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
+    public async Task<IActionResult> Configure(ConfigurationModel model)
+    {
+        
+
+        return await Configure();
     }
 
     #endregion

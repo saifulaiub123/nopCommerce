@@ -5,6 +5,7 @@ using Nop.Core;
 using Nop.Core.Domain.Cms;
 using Nop.Plugin.Misc.ProductLiveButton;
 using Nop.Plugin.Misc.ProductLiveButton.Component;
+using Nop.Plugin.Misc.ProductLiveButton.Components;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -61,7 +62,8 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
     {
         return Task.FromResult<IList<string>>(new List<string>
         {
-            AdminWidgetZones.ProductDetailsBlock
+            AdminWidgetZones.ProductDetailsBlock,
+            PublicWidgetZones.ProductDetailsEssentialTop
         });
     }
 
@@ -83,7 +85,9 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
         ArgumentNullException.ThrowIfNull(widgetZone);
 
         if (widgetZone.Equals(AdminWidgetZones.ProductDetailsBlock))
-            return typeof(ProductLiveButtonViewComponent);
+            return typeof(AdminProductLiveButtonDataViewComponent);
+        if (widgetZone.Equals(PublicWidgetZones.ProductDetailsEssentialTop))
+            return typeof(PublicProductPageLiveButtonViewComponent);
 
         return null;
     }

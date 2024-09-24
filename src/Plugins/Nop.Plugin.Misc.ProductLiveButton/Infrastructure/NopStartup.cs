@@ -22,7 +22,7 @@ public class NopStartup : INopStartup
         services.AddScoped<IProductDemoService, ProductDemoService>();
         services.Configure<MvcOptions>(options =>
         {
-            options.Filters.Add<MyActionFilter>();
+            options.Filters.Add<ProductDemoActionFilter>();
         });
     }
 
