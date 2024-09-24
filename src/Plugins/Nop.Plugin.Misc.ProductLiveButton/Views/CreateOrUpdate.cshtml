@@ -32,42 +32,6 @@
                     </div>
                 </div>
             }
-            <script>
-                $(function () {
-                    alert();
-                    $('form').on('submit', function (event) {
-                        //event.preventDefault();
-                        alert();
-                        debugger;
-                        var postData = {
-                            ProductId: $("#@Html.IdFor(model => model.ProductId)").val(),
-                            DemoLink: $("#@Html.IdFor(model => model.DemoLink)").val(),
-                            ShowInProductPictureBottom: $("#@Html.IdFor(model => model.ShowInProductPictureBottom)").val()
-                        };
-                        addAntiForgeryToken(postData);
-
-                        // $.ajax({
-                        //     cache: false,
-                        //     type: "POST",
-                        //     url: "@Html.Raw(Url.Action("AddProductDemo", "ProductDemoLink"))",
-                        //     data: postData,
-                        //     success: function (data, textStatus, jqXHR) {
-                        //         if (data.Result) {
-
-                        //         } else {
-
-                        //             display_nop_error(data);
-                        //         }
-                        //     },
-                        //     complete: function (jqXHR, textStatus) {
-
-                        //     }
-                        // });
-                    });
-                    // $(this).submit();
-                })
-                
-            </script>
         </div>
         </div>
 </nop-card>

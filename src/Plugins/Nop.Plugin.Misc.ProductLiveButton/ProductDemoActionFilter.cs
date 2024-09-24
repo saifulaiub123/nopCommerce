@@ -1,33 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Http.Extensions;
-using Nop.Plugin.Misc.ProductLiveButton.Controllers;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
 using Nop.Plugin.Misc.ProductLiveButton.Services;
-using Nop.Services.Authentication;
-using Nop.Web.Areas.Admin.Controllers;
-using Nop.Web.Models.Catalog;
 
 namespace Nop.Plugin.Misc.ProductLiveButton;
-public class MyActionFilter : ActionFilterAttribute
+public class ProductDemoActionFilter : ActionFilterAttribute
 {
     protected readonly IProductDemoService _productDemoService;
 
-    public MyActionFilter(IProductDemoService productDemoService)
+    public ProductDemoActionFilter(IProductDemoService productDemoService)
     {
         _productDemoService = productDemoService;
     }
 
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        var t = context;
         if (context.Result == null)
             await next();
 
@@ -35,11 +23,11 @@ public class MyActionFilter : ActionFilterAttribute
     }
     private async Task HandleProductDemoLinkForm(ActionExecutingContext context)
     {
-        var controller = context.RouteData.Values["controller"].ToString();
-        var action = context.RouteData.Values["action"].ToString();
-        var methodType = context.HttpContext.Request.Method;
+        var controller = context.RouteData.Values["controller"].ToString() == "Product";
+        var action = context.RouteData.Values["action"].ToString() == "Create" || context.RouteData.Values["action"].ToString() == "Edit";
+        var methodType = context.HttpContext.Request.Method == "POST";
 
-        if (controller == "Product" && action == "Edit" && methodType == "POST")
+        if (controller && action && methodType)
         {
             var session = context.HttpContext.Session;
             var entity = await session.GetAsync<Product>(ProductLiveButtonDefaults.ProductAddOrUpdateSuccessSessionKey);

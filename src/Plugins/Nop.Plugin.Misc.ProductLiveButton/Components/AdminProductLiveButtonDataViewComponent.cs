@@ -6,11 +6,11 @@ using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Components;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Component;
-public class ProductLiveButtonViewComponent : NopViewComponent
+public class AdminProductLiveButtonDataViewComponent : NopViewComponent
 {
     protected readonly IProductDemoService _productDemoService;
 
-    public ProductLiveButtonViewComponent(
+    public AdminProductLiveButtonDataViewComponent(
         IProductDemoService productDemoService)
     {
         _productDemoService = productDemoService;
