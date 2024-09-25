@@ -85,7 +85,7 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
         ArgumentNullException.ThrowIfNull(widgetZone);
 
         if (widgetZone.Equals(AdminWidgetZones.ProductDetailsBlock))
-            return typeof(AdminProductLiveButtonDataViewComponent);
+            return typeof(AdminProductLiveButtonViewComponent);
         if (widgetZone.Equals(PublicWidgetZones.ProductDetailsEssentialTop))
             return typeof(PublicProductPageLiveButtonViewComponent);
 
@@ -98,21 +98,15 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
     /// <returns>A task that represents the asynchronous operation</returns>
     public override async Task InstallAsync()
     {
-    //    var settings = new GoogleAnalyticsSettings
-    //    {
-    //        GoogleId = "G-XXXXXXXXXX",
-    //        TrackingScript = @"<!-- Global site tag (gtag.js) - Google Analytics -->
-    //            <script async src='https://www.googletagmanager.com/gtag/js?id={GOOGLEID}'></script>
-    //            <script>
-    //              window.dataLayer = window.dataLayer || [];
-    //              function gtag(){dataLayer.push(arguments);}
-    //              gtag('js', new Date());
-
-    //              gtag('config', '{GOOGLEID}');
-    //              {CUSTOMER_TRACKING}
-    //            </script>"
-    //    };
-    //    await _settingService.SaveSettingAsync(settings);
+        var settings = new ProductLiveButtonSettings()
+        {
+            ButtonTitle = "Preview",
+            ButtonBackgroundColor = "#27c3e2",
+            ButtonTextColor = "#fafbfc",
+            ShowInProductBox = true,
+            CustomCss = ""
+        };
+        await _settingService.SaveSettingAsync(settings);
 
         if (!_widgetSettings.ActiveWidgetSystemNames.Contains(ProductLiveButtonDefaults.SystemName))
         {
@@ -122,9 +116,14 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
 
         await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
         {
-            ["Plugins.Misc.ProductLiveButton.Title"] = "Product demo link",
-            ["Plugins.Misc.ProductLiveButton.DemoLink"] = "Link",
-            ["Plugins.Misc.ProductLiveButton.ShowInProductPictureBottom"] = "Show link on Picture",
+            ["Plugins.Misc.ProductLiveButton.SectionTitle"] = "Product Live Button",
+            ["Plugins.Misc.ProductLiveButton.Field.DemoLink"] = "Link",
+
+            ["Plugins.Misc.ProductLiveButton.Field.ButtonTitle"] = "Title",
+            ["Plugins.Misc.ProductLiveButton.Field.ButtonBackgroundColor"] = "Background Color",
+            ["Plugins.Misc.ProductLiveButton.Field.ButtonTextColor"] = "Text Color",
+            ["Plugins.Misc.ProductLiveButton.Field.ShowInProductBox"] = "Show button in product Box",
+            ["Plugins.Misc.ProductLiveButton.Field.CustomCss"] = "Custom Css",
         });
 
         await base.InstallAsync();

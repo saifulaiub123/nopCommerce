@@ -19,7 +19,7 @@ public class RouteProvider : BaseRouteProvider, IRouteProvider
     {
         endpointRouteBuilder.MapControllerRoute(name: ProductLiveButtonDefaults.ConfigurationRouteName,
             pattern: "Admin/ProductLiveButton/Configure",
-            defaults: new { controller = "ProductLiveButton", action = "Configure", area = AreaNames.ADMIN });
+            defaults: new { controller = "ProductLiveButtonAdmin", action = "Configure", area = AreaNames.ADMIN });
     }
 
     /// <summary>

@@ -7,35 +7,16 @@ namespace Nop.Plugin.Misc.ProductLiveButton.Models;
 
 public record ConfigurationModel : BaseNopModel
 {
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.ButtonTitle")]
+    public string ButtonTitle { get; set; }
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.ButtonBackgroundColor")]
+    public string ButtonBackgroundColor { get; set; }
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.ButtonTextColor")]
+    public string ButtonTextColor { get; set; }
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.ShowInProductBox")]
+    public bool ShowInProductBox { get; set; }
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.CustomCss")]
+    public string CustomCss { get; set; }
     public int ActiveStoreScopeConfiguration { get; set; }
 
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.UseSandbox")]
-    public bool UseSandbox { get; set; }
-    public bool UseSandbox_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.GoogleId")]
-    public string GoogleId { get; set; }
-    public bool GoogleId_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.ApiSecret")]
-    [NoTrim]
-    [DataType(DataType.Password)]
-    public string ApiSecret { get; set; }
-    public bool ApiSecret_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.EnableEcommerce")]
-    public bool EnableEcommerce { get; set; }
-    public bool EnableEcommerce_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.TrackingScript")]
-    public string TrackingScript { get; set; }
-    public bool TrackingScript_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.IncludingTax")]
-    public bool IncludingTax { get; set; }
-    public bool IncludingTax_OverrideForStore { get; set; }
-
-    [NopResourceDisplayName("Plugins.Widgets.GoogleAnalytics.IncludeCustomerId")]
-    public bool IncludeCustomerId { get; set; }
-    public bool IncludeCustomerId_OverrideForStore { get; set; }
 }

@@ -1,10 +1,10 @@
 ﻿@model ProductDemoModel
 
-<nop-card asp-name="product-demolink" asp-icon="fas fa-truck" asp-title="@T("Plugins.Misc.ProductLiveButton.Title")" asp-hide-block-attribute-name="ProductLiveButton.HideProductBlock" asp-hide="false" asp-advanced="false">
+<nop-card asp-name="product-demolink" asp-icon="fas fa-truck" asp-title="@T("Plugins.Misc.ProductLiveButton.SectionTitle")" asp-hide-block-attribute-name="ProductLiveButton.HideProductBlock" asp-hide="false" asp-advanced="false">
         <div class="card card-default no-margin">
             <div class="card-body">
-            @if (Model.ProductId > 0)
-            {
+            @* @if (Model.ProductId > 0)
+            { *@
                 <div class="form-group row" id="pdlDemoLink">
                     <div class="col-md-3">
                         <nop-label asp-for="DemoLink" />
@@ -14,7 +14,7 @@
                         <span asp-validation-for="DemoLink"></span>
                     </div>
                 </div>
-                <div class="form-group row" id="pdlShowInProductPictureBottom">
+                @* <div class="form-group row" id="pdlShowInProductPictureBottom">
                     <div class="col-md-3">
                         <nop-label asp-for="ShowInProductPictureBottom" />
                     </div>
@@ -22,8 +22,8 @@
                         <nop-editor asp-for="ShowInProductPictureBottom" />
                         <span asp-validation-for="ShowInProductPictureBottom"></span>
                     </div>
-                </div>
-            }
+                </div> *@
+            @* }
             else
             {
                 <div class="card card-default">
@@ -31,7 +31,7 @@
                         @T("Plugins.Misc.ProductLiveButton.SaveBeforeEdit")
                     </div>
                 </div>
-            }
+            } *@
         </div>
         </div>
 </nop-card>

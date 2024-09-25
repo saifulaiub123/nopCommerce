@@ -138,7 +138,7 @@ public class ProductDemoService : IProductDemoService
         if (existingRecord is not null)
         {
             existingRecord.DemoLink = model.DemoLink;
-            existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
+            //existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
             await _productDemoRepository.UpdateAsync(existingRecord, false);
 
         }
@@ -162,7 +162,7 @@ public class ProductDemoService : IProductDemoService
         //ArgumentNullException.ThrowIfNull(existingRecord);
 
         existingRecord.DemoLink = model.DemoLink;
-        existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
+        //existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
 
         await _productDemoRepository.UpdateAsync(existingRecord, false);
 
