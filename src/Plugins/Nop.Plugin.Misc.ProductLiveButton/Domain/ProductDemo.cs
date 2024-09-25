@@ -7,5 +7,5 @@ public class ProductDemo : BaseEntity
 {
     public int ProductId { get; set; }
     public string DemoLink { get; set; }
-    public bool ShowInProductPictureBottom { get; set; }
+    //public bool ShowInProductPictureBottom { get; set; }
 }

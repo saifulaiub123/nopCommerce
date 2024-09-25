@@ -36,7 +36,7 @@ public class ProductDemoActionFilter : ActionFilterAttribute
             {
                 ProductId = entity.Id,
                 DemoLink = context.HttpContext.Request.Form[nameof(ProductDemoModel.DemoLink).ToLower()].ToString(),
-                ShowInProductPictureBottom = Convert.ToBoolean(context.HttpContext.Request.Form[nameof(ProductDemoModel.ShowInProductPictureBottom).ToLower()].ToString().Split(',')[0])
+                //ShowInProductPictureBottom = Convert.ToBoolean(context.HttpContext.Request.Form[nameof(ProductDemoModel.ShowInProductPictureBottom).ToLower()].ToString().Split(',')[0])
             };
             
             await _productDemoService.AddOrUpdateAsync(productDemoModel);

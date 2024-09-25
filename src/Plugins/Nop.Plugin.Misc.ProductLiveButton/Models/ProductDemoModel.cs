@@ -8,11 +8,11 @@ public record ProductDemoModel : BaseNopEntityModel
 {
     public int ProductId { get; set; }
 
-    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.DemoLink")]
+    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.Field.DemoLink")]
     [UIHint("Show demo button in picture")]
     public string DemoLink { get; set; }
 
-    [NopResourceDisplayName("Plugins.Misc.ProductLiveButton.ShowInProductPictureBottom")]
-    [UIHint("Show demo button in picture")]
-    public bool ShowInProductPictureBottom { get; set; }
+    //[NopResourceDisplayName("Plugins.Misc.ProductLiveButton.ShowInProductPictureBottom")]
+    //[UIHint("Show demo button in picture")]
+    //public bool ShowInProductPictureBottom { get; set; }
 }

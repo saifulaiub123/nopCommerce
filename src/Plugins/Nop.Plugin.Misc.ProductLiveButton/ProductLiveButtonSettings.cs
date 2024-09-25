@@ -8,10 +8,8 @@ public class ProductLiveButtonSettings : ISettings
     /// Gets or sets button title
     /// </summary>
     public string ButtonTitle { get; set; }
-    public string ShowInProductPictureBottom { get; set; }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether to include customer identifier to script
-    /// </summary>
-    public bool IncludeCustomerId { get; set; }
+    public string ButtonBackgroundColor { get; set; }
+    public string ButtonTextColor { get; set; }
+    public bool ShowInProductBox { get; set; }
+    public string CustomCss { get; set; }
 }

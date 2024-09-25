@@ -11,7 +11,7 @@ public class ProductLiveButtonBuilder : NopEntityBuilder<ProductDemo>
     public override void MapEntity(CreateTableExpressionBuilder table)
     {
         table.WithColumn(nameof(ProductDemo.ProductId)).AsInt32().ForeignKey<Product>(onDelete: Rule.None)
-        .WithColumn(nameof(ProductDemo.DemoLink)).AsString(1000).Nullable()
-        .WithColumn(nameof(ProductDemo.ShowInProductPictureBottom)).AsBoolean().WithDefaultValue(false);
+        .WithColumn(nameof(ProductDemo.DemoLink)).AsString(1000).Nullable();
+        //.WithColumn(nameof(ProductDemo.ShowInProductPictureBottom)).AsBoolean().WithDefaultValue(false);
     }
 }

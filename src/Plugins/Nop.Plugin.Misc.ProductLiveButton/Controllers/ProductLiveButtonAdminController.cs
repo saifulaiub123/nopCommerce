@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Localization;
+using Nop.Data;
 using Nop.Plugin.Misc.ProductLiveButton.Domain;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
 using Nop.Plugin.Misc.ProductLiveButton.Services;
@@ -35,7 +36,6 @@ public class ProductLiveButtonAdminController : BasePluginController
     protected readonly IPermissionService _permissionService;
     protected readonly ISettingService _settingService;
     protected readonly IStoreContext _storeContext;
-    protected readonly ProductDemoService _productDemoService;
 
     #endregion
 
@@ -46,15 +46,13 @@ public class ProductLiveButtonAdminController : BasePluginController
         INotificationService notificationService,
         IPermissionService permissionService,
         ISettingService settingService,
-        IStoreContext storeContext,
-        ProductDemoService productDemoService)
+        IStoreContext storeContext)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
         _permissionService = permissionService;
         _settingService = settingService;
         _storeContext = storeContext;
-        _productDemoService = productDemoService;
     }
 
     #endregion
@@ -64,16 +62,51 @@ public class ProductLiveButtonAdminController : BasePluginController
     [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure()
     {
-        
+        //load settings for a chosen store scope
+        var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
+        var settings = await _settingService.LoadSettingAsync<ProductLiveButtonSettings>(storeScope);
 
-        return View("~/Plugins/Widgets.GoogleAnalytics/Views/Configure.cshtml");
+        var model = new ConfigurationModel
+        {
+            ButtonTitle = settings.ButtonTitle,
+            ButtonBackgroundColor = settings.ButtonBackgroundColor,
+            ButtonTextColor = settings.ButtonTextColor,
+            ShowInProductBox = settings.ShowInProductBox,
+            CustomCss = settings.CustomCss,
+            ActiveStoreScopeConfiguration = storeScope
+        };
+
+        return View("~/Plugins/Misc.ProductLiveButton/Views/Configure.cshtml", model);
     }
 
     [HttpPost]
     [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure(ConfigurationModel model)
     {
-        
+        //load settings for a chosen store scope
+        var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
+        var settings = await _settingService.LoadSettingAsync<ProductLiveButtonSettings>(storeScope);
+
+        settings.ButtonTitle = model.ButtonTitle;
+        settings.ButtonBackgroundColor = model.ButtonBackgroundColor;
+        settings.ButtonTextColor = model.ButtonTextColor;
+        settings.ShowInProductBox = model.ShowInProductBox;
+        settings.CustomCss = model.CustomCss;
+       
+
+        /* We do not clear cache after each setting update.
+         * This behavior can increase performance because cached settings will not be cleared 
+         * and loaded from database after each update */
+        await _settingService.SaveSettingAsync(settings, x => x.ButtonTitle, storeScope, false);
+        await _settingService.SaveSettingAsync(settings, x => x.ButtonBackgroundColor, storeScope, false);
+        await _settingService.SaveSettingAsync(settings, x => x.ButtonTextColor, storeScope, false);
+        await _settingService.SaveSettingAsync(settings, x => x.ShowInProductBox, storeScope, false);
+        await _settingService.SaveSettingAsync(settings, x => x.CustomCss, storeScope, false);
+
+        //now clear settings cache
+        await _settingService.ClearCacheAsync();
+
+        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Plugins.Saved"));
 
         return await Configure();
     }

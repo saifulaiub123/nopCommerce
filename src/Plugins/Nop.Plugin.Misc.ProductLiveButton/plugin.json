@@ -2,7 +2,7 @@
   "Group": "Misc",
   "FriendlyName": "Product Live Button",
   "SystemName": "Misc.ProductLiveButton",
-  "Version": "4.80.2",
+  "Version": "4.80.3",
   "SupportedVersions": [ "4.80" ],
   "Author": "nopCommerce team, Nicolas Muniere",
   "DisplayOrder": 1,

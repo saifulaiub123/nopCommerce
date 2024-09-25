@@ -1,20 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
 using Nop.Plugin.Misc.ProductLiveButton.Services;
+using Nop.Services.Configuration;
+using Nop.Services.Localization;
+using Nop.Services.Messages;
+using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Components;
+using Nop.Web.Framework.Mvc.Filters;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Component;
-public class AdminProductLiveButtonDataViewComponent : NopViewComponent
+public class AdminProductLiveButtonViewComponent : NopViewComponent
 {
+    #region Fields
     protected readonly IProductDemoService _productDemoService;
 
-    public AdminProductLiveButtonDataViewComponent(
+    #endregion
+
+    #region Ctor
+    public AdminProductLiveButtonViewComponent(
         IProductDemoService productDemoService)
     {
         _productDemoService = productDemoService;
     }
+
+    #endregion
+
 
     public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
     {
@@ -39,7 +52,7 @@ public class AdminProductLiveButtonDataViewComponent : NopViewComponent
             
         return View("~/Plugins/Misc.ProductLiveButton/Views/CreateOrUpdate.cshtml", productDemoModel);
     }
-
+    
     //public class ProductDemoEventConsumer : IConsumer<AdminProductDetailsCreated>
     //{
     //    public void HandleEvent(AdminProductDetailsCreated eventMessage)

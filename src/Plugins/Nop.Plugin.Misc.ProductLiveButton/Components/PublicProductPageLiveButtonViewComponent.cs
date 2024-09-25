@@ -30,10 +30,8 @@ public class PublicProductPageLiveButtonViewComponent : NopViewComponent
         {
             productDemoModel = await _productDemoService.GetByProductId(product.Id);
         }
-        else
-        {
-            productDemoModel = new ProductDemoModel();
-        }
+        if (productDemoModel is null)
+            return Content(string.Empty);
 
         return View("~/Plugins/Misc.ProductLiveButton/Views/PublicInfoProductPage.cshtml", productDemoModel);
     }
