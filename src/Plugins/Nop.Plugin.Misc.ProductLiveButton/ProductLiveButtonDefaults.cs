@@ -15,6 +15,7 @@ public static class ProductLiveButtonDefaults
     /// </summary>
     public static string ConfigurationRouteName => "Plugin.Misc.ProductLiveButton.Configure";
     public static string AddProductDemoRoutName => "Plugin.Misc.ProductLiveButton.AddProductDemo";
+    public static string PreviewDemoRoutName => "Plugin.Misc.ProductLiveButton.PreviewDemo";
 
     /// <summary>
     /// Gets a URL to send data using the Measurement Protocol on Google account

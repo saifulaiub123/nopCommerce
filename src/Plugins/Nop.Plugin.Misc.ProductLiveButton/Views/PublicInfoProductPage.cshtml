@@ -31,7 +31,9 @@
 
         })
         function goToDemoPage(link) {
-            window.open(link, '_blank');
+            var baseUrl = '@Url.Action("PreviewDemo", "ProductLiveButtonPublic")';
+            var fullUrl = baseUrl + '?link=' + link;
+            window.open(fullUrl, '_blank');
         }
     </script>
 }
