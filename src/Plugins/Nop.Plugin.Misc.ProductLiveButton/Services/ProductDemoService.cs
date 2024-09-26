@@ -1,11 +1,17 @@
 ﻿using Nop.Core.Caching;
 using Nop.Core;
 using Nop.Data;
+using Nop.Plugin.Misc.ProductLiveButton;
 using Nop.Plugin.Misc.ProductLiveButton.Domain;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
 using static Nop.Services.Security.StandardPermission;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Core.Domain.Catalog;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Nop.Core.Infrastructure.Mapper;
+using AutoMapper;
+using DocumentFormat.OpenXml.Office2010.Ink;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Services;
 public class ProductDemoService : IProductDemoService
@@ -16,6 +22,7 @@ public class ProductDemoService : IProductDemoService
     protected readonly IRepository<Product> _productRepository;
     protected readonly IStaticCacheManager _staticCacheManager;
     protected readonly IWorkContext _workContext;
+    //private readonly IMapper _mapper;
     //protected readonly GoogleAuthenticatorSettings _googleAuthenticatorSettings;
     //protected TwoFactorAuthenticator _twoFactorAuthenticator;
 
@@ -27,12 +34,15 @@ public class ProductDemoService : IProductDemoService
         IRepository<ProductDemo> productDemoRepository,
         IStaticCacheManager staticCacheManager,
         IWorkContext workContext,
-        IRepository<Product> productRepository)
+        IRepository<Product> productRepository
+        //IMapper mapper
+        )
     {
         _staticCacheManager = staticCacheManager;
         _workContext = workContext;
         _productDemoRepository = productDemoRepository;
         _productRepository = productRepository;
+        //_mapper = mapper;
     }
     #endregion
 
@@ -113,14 +123,20 @@ public class ProductDemoService : IProductDemoService
     /// </returns>
     public async Task<ProductDemoModel> GetByProductId(int productId)
     {
-        var existingRecord = await _productDemoRepository.Table.
-            FirstOrDefaultAsync(record => record.ProductId == productId);
+        var existingRecord = await _productDemoRepository.Table.FirstOrDefaultAsync(record => record.ProductId == productId);
 
         if(existingRecord is not null) return existingRecord.ToModel<ProductDemoModel>();
        
         return null;
     }
+    public async Task<List<ProductDemoModel>> GetByProductIds(List<int> productIds)
+    {
+        var tt = new ProductDemoModel();
+        var existingRecord = await _productDemoRepository.Table.Where(record => productIds.Contains(record.ProductId)).ToListAsync();
+        var d = existingRecord.ToModelList<ProductDemo, ProductDemoModel>().ToList();
 
+        return d;
+    }
     /// <summary>
     /// Add configuration of GoogleAuthenticator
     /// </summary>
@@ -138,7 +154,6 @@ public class ProductDemoService : IProductDemoService
         if (existingRecord is not null)
         {
             existingRecord.DemoLink = model.DemoLink;
-            //existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
             await _productDemoRepository.UpdateAsync(existingRecord, false);
 
         }
@@ -159,11 +174,7 @@ public class ProductDemoService : IProductDemoService
         var existingRecord = _productDemoRepository.Table.
             FirstOrDefault(record => record.ProductId == model.ProductId);
 
-        //ArgumentNullException.ThrowIfNull(existingRecord);
-
         existingRecord.DemoLink = model.DemoLink;
-        //existingRecord.ShowInProductPictureBottom = model.ShowInProductPictureBottom;
-
         await _productDemoRepository.UpdateAsync(existingRecord, false);
 
         return;
@@ -180,7 +191,6 @@ public class ProductDemoService : IProductDemoService
         ArgumentNullException.ThrowIfNull(existingRecord);
 
         await _productDemoRepository.DeleteAsync(existingRecord, false);
-
         return;
 
     }

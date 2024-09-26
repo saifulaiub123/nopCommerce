@@ -1,0 +1,89 @@
+﻿
+<style>
+    .live-button-div
+    {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .live-button
+    {
+        height: 43px;
+        border: 0;
+        background-color: @Model.Settings.ButtonBackgroundColor;
+        padding: 0 24px;
+        font-size: 15px;
+        color: @Model.Settings.ButtonTextColor;
+    }
+
+    .live-button-box {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        /* height: 39px; */
+        opacity: .8;
+        display: block;
+        /* text-align: center; */
+        line-height: 38px;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+        letter-spacing: .3px;
+        width: 100%;
+        border: none;
+        /* transition: all 0.3s ease 0s, color 0.1s ease 0s;
+        -webkit-transition: all 0.3s ease 0s, color 0.1s ease 0s;
+        -moz-transition: all 0.3s ease 0s, color 0.1s ease 0s;
+        -webkit-transform: translateY(103%) translateZ(0);
+        transform: translateY(103%) translateZ(0);
+        -webkit-backface-visibility: hidden; */
+        backface-visibility: hidden;
+    }
+</style>
+@if (Model.ProductDemoModel.DemoLink != null && Model.ProductDemoModel.DemoLink != string.Empty)
+{
+    
+}
+<script>
+    $(function () {
+        alert("Home page button script loaded");
+        var productIds = [];
+
+        // Loop through each product-item div and extract the data-productid attribute
+        $('.product-item').each(function () {
+            var productId = $(this).data('product-id');
+            productIds.push(productId);  // Add each productid to the array
+        });
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("GetDemoLinkDataByProductIds", "ProductLiveButtonPublic"))",
+            data: JSON.stringify({ productIds: productIds }),
+            success: function (data, textStatus, jqXHR) {
+
+                if(data.length > 0)
+                {
+                    data.each(function(item){
+                        $('.product-item[data-productid="'+item.ProductId+'"] .picture').append('<button type="button" class="button-1 live-button live-button-box" onclick="goToDemoPage(\''+item.DemoLink+'\')">@Model.Settings.ButtonTitle</button>');
+                    })
+                }
+               
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                
+            }
+        });
+
+
+        //$(".product-item .picture").append($(".live-button"));
+
+    })
+
+    function goToDemoPage(link) {
+        var baseUrl = '@Url.Action("PreviewDemo", "ProductLiveButtonPublic")';
+        var fullUrl = baseUrl + '?link=' + link;
+        window.open(fullUrl, '_blank');
+    }
+</script>

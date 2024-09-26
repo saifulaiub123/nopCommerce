@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
+using Nop.Plugin.Misc.ProductLiveButton.Services;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
@@ -24,6 +25,7 @@ public class ProductLiveButtonPublicController : BasePluginController
     protected readonly ISettingService _settingService;
     protected readonly IStoreContext _storeContext;
     protected readonly ICommonModelFactory _commonModelFactory;
+    protected readonly IProductDemoService _productDemoService;
     #endregion
 
     #region Ctor
@@ -34,7 +36,8 @@ public class ProductLiveButtonPublicController : BasePluginController
         IPermissionService permissionService,
         ISettingService settingService,
         IStoreContext storeContext,
-        ICommonModelFactory commonModelFactory)
+        ICommonModelFactory commonModelFactory,
+        IProductDemoService productDemoService)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
@@ -42,6 +45,7 @@ public class ProductLiveButtonPublicController : BasePluginController
         _settingService = settingService;
         _storeContext = storeContext;
         _commonModelFactory = commonModelFactory;
+        _productDemoService = productDemoService;
     }
 
     #endregion
@@ -56,6 +60,17 @@ public class ProductLiveButtonPublicController : BasePluginController
         {
             LogoModel = logoModel,
             DemoLink = link
+        };
+        return View("~/Plugins/Misc.ProductLiveButton/Views/PreviewDemo.cshtml", previewDemoModel);
+    }
+    public async Task<IActionResult> GetDemoLinkDataByProductIds(List<int> productIds)
+    {
+        var logoModel = await _commonModelFactory.PrepareLogoModelAsync();
+
+        var previewDemoModel = new PreviewDemoModel()
+        {
+            LogoModel = logoModel,
+            DemoLink = ""
         };
         return View("~/Plugins/Misc.ProductLiveButton/Views/PreviewDemo.cshtml", previewDemoModel);
     }

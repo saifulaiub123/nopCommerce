@@ -5,58 +5,9 @@
 /// </summary>
 public static class ProductLiveButtonDefaults
 {
-    /// <summary>
-    /// Gets a plugin system name
-    /// </summary>
     public static string SystemName => "Misc.ProductLiveButton";
-
-    /// <summary>
-    /// Gets the configuration route name
-    /// </summary>
     public static string ConfigurationRouteName => "Plugin.Misc.ProductLiveButton.Configure";
     public static string AddProductDemoRoutName => "Plugin.Misc.ProductLiveButton.AddProductDemo";
     public static string PreviewDemoRoutName => "Plugin.Misc.ProductLiveButton.PreviewDemo";
-
-    /// <summary>
-    /// Gets a URL to send data using the Measurement Protocol on Google account
-    /// </summary>
-    public static string EndPointUrl => "https://www.google-analytics.com/mp/collect";
-
-    /// <summary>
-    /// Gets a URL to send data using the Measurement Protocol Validation Server
-    /// </summary>
-    public static string EndPointDebugUrl => "https://www.google-analytics.com/debug/mp/collect";
-
-    /// <summary>
-    /// Gets a name of the order paid event
-    /// </summary>
-    public static string OrderPaidEventName => "purchase";
-
-    /// <summary>
-    /// Gets a name of the order refunded event
-    /// </summary>
-    public static string OrderRefundedEventName => "refund";
-
-    /// <summary>
-    /// Gets a name of the cookies "client_id"
-    /// </summary>
-    public static string ClientIdCookiesName => "_ga";
-
-    /// <summary>
-    /// Gets a name of the cookies "session_id"
-    /// </summary>
-    public static string SessionIdCookiesName => "_ga_";
-    public static string ProductDemoUpdateSessionKey => "_productDemoUpdateSessionKey{0}_";
     public static string ProductAddOrUpdateSuccessSessionKey => "_productAddOrUpdateSuccessSessionKey_";
-
-    /// <summary>
-    /// Gets a key of the attribute to store client_id
-    /// </summary>
-    public static string ClientIdAttribute => "GoogleAnalytics.ClientId";
-
-    /// <summary>
-    /// Gets a key of the attribute to store session_id
-    /// </summary>
-    public static string SessionIdAttribute => "GoogleAnalytics.SessionId";
-
 }

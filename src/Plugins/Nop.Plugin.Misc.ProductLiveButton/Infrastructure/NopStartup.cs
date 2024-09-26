@@ -24,6 +24,7 @@ public class NopStartup : INopStartup
         {
             options.Filters.Add<ProductDemoActionFilter>();
         });
+        
     }
 
     /// <summary>
@@ -32,6 +33,7 @@ public class NopStartup : INopStartup
     /// <param name="application">Builder for configuring an application's request pipeline</param>
     public void Configure(IApplicationBuilder application)
     {
+        
     }
 
     /// <summary>
