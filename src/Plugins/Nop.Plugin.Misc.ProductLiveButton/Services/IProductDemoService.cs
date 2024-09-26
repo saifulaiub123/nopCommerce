@@ -6,7 +6,7 @@ namespace Nop.Plugin.Misc.ProductLiveButton.Services;
 public interface IProductDemoService
 {
     Task<ProductDemoModel> GetByProductId(int productId);
-
+    Task<List<ProductDemoModel>> GetByProductIds(List<int> productIds);
 
     /// <summary>
     /// Add configuration of GoogleAuthenticator

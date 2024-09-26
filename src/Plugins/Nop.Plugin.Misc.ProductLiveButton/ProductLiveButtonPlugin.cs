@@ -64,7 +64,8 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
         return Task.FromResult<IList<string>>(new List<string>
         {
             AdminWidgetZones.ProductDetailsBlock,
-            PublicWidgetZones.ProductDetailsEssentialTop
+            PublicWidgetZones.ProductDetailsEssentialTop,
+            PublicWidgetZones.CategoryDetailsBottom
         });
     }
 
@@ -89,6 +90,8 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
             return typeof(AdminProductLiveButtonViewComponent);
         if (widgetZone.Equals(PublicWidgetZones.ProductDetailsEssentialTop))
             return typeof(PublicProductPageLiveButtonViewComponent);
+        if (widgetZone.Equals(PublicWidgetZones.CategoryDetailsBottom))
+            return typeof(HomePageLiveButtonViewComponent);
 
         return null;
     }
