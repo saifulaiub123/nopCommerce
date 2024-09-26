@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Nop.Core;
@@ -149,6 +150,38 @@ public class ProductLiveButtonPlugin : BasePlugin, IWidgetPlugin
         await base.UninstallAsync();
     }
 
+    public override async Task UpdateAsync(string currentVersion, string targetVersion)
+    {
+        var current = decimal.TryParse(currentVersion, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : 1.00M;
+
+        if (currentVersion == "4.80.2" && targetVersion == "4.80.3")
+        {
+            var settings = new ProductLiveButtonSettings()
+            {
+                ButtonTitle = "Preview",
+                ButtonBackgroundColor = "#27c3e2",
+                ButtonTextColor = "#fafbfc",
+                ShowInProductBox = true,
+                CustomCss = ""
+            };
+            await _settingService.SaveSettingAsync(settings);
+
+            if (!_widgetSettings.ActiveWidgetSystemNames.Contains(ProductLiveButtonDefaults.SystemName))
+            {
+                _widgetSettings.ActiveWidgetSystemNames.Add(ProductLiveButtonDefaults.SystemName);
+                await _settingService.SaveSettingAsync(_widgetSettings);
+            }
+
+            await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
+            {
+                ["Plugins.Misc.ProductLiveButton.Field.ButtonTitle"] = "Title",
+                ["Plugins.Misc.ProductLiveButton.Field.ButtonBackgroundColor"] = "Background Color",
+                ["Plugins.Misc.ProductLiveButton.Field.ButtonTextColor"] = "Text Color",
+                ["Plugins.Misc.ProductLiveButton.Field.ShowInProductBox"] = "Show button in product Box",
+                ["Plugins.Misc.ProductLiveButton.Field.CustomCss"] = "Custom Css",
+            });
+        }
+    }
     #endregion
 
     #region Properties

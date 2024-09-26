@@ -19,7 +19,8 @@ public class SchemaUpdate_4_80_3 : Migration
         if (Schema.Table(nameof(ProductDemo)).Column("ShowInProductPictureBottom").Exists())
             Delete.Column("ShowInProductPictureBottom").FromTable(nameof(ProductDemo));
 
-        Create.Table("Test123")
+        if (!Schema.Table(nameof(ProductDemo)).Exists())
+            Create.Table("Test123")
             .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
             .WithColumn("ProductId").AsInt32().ForeignKey<Product>().OnDelete(Rule.None);
         //.WithColumn(nameof(Affiliate.AddressId)).AsInt32().ForeignKey<Address>().OnDelete(Rule.None);

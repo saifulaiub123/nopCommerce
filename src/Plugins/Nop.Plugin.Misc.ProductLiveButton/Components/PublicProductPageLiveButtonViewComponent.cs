@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
 using Nop.Plugin.Misc.ProductLiveButton.Services;
+using Nop.Services.Configuration;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Components;
 using Nop.Web.Models.Catalog;
@@ -14,11 +16,17 @@ namespace Nop.Plugin.Misc.ProductLiveButton.Components;
 public class PublicProductPageLiveButtonViewComponent : NopViewComponent
 {
     protected readonly IProductDemoService _productDemoService;
+    protected readonly ISettingService _settingService;
+    protected readonly IStoreContext _storeContext;
 
     public PublicProductPageLiveButtonViewComponent(
-        IProductDemoService productDemoService)
+        IProductDemoService productDemoService, 
+        ISettingService settingService, 
+        IStoreContext storeContext)
     {
         _productDemoService = productDemoService;
+        _settingService = settingService;
+        _storeContext = storeContext;
     }
 
     public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
@@ -33,7 +41,16 @@ public class PublicProductPageLiveButtonViewComponent : NopViewComponent
         if (productDemoModel is null)
             return Content(string.Empty);
 
-        return View("~/Plugins/Misc.ProductLiveButton/Views/PublicInfoProductPage.cshtml", productDemoModel);
+        var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
+        var settings = await _settingService.LoadSettingAsync<ProductLiveButtonSettings>(storeScope);
+
+        var publicInfoProductPageModel = new PublicInfoProductPageModel()
+        {
+            ProductDemoModel = productDemoModel,
+            Settings = settings
+        };
+
+        return View("~/Plugins/Misc.ProductLiveButton/Views/PublicInfoProductPage.cshtml", publicInfoProductPageModel);
     }
 
     //public class ProductDemoEventConsumer : IConsumer<AdminProductDetailsCreated>
