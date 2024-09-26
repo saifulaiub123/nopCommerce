@@ -8,13 +8,17 @@ namespace Nop.Plugin.Misc.ProductLiveButton.Data.Migrations;
 
 [NopMigration("2024/09/21 08:45:00", "Nop.Plugin.Misc.LiveButton Schema", MigrationProcessType.Installation)]
 
-public class SchemaMigration : ForwardOnlyMigration
+public class SchemaMigration : Migration
 {
     public override void Up()
     {
         if (!DataSettingsManager.IsDatabaseInstalled())
             return;
-        Create.TableFor<ProductDemo>();
+        if (!Schema.Table(nameof(ProductDemo)).Exists())
+            Create.TableFor<ProductDemo>();
     }
+    public override void Down()
+    {
 
+    }
 }

@@ -1,4 +1,4 @@
-﻿@model ProductDemoModel
+﻿@model PublicInfoProductPageModel
 <style>
     .live-button-div
     {
@@ -9,16 +9,16 @@
     {
         height: 43px;
         border: 0;
-        background-color: #4ab2f1;
+        background-color: @Model.Settings.ButtonBackgroundColor;
         padding: 0 24px;
         font-size: 15px;
-        color: #fff;
+        color: @Model.Settings.ButtonTextColor;
     }
 </style>
-@if(Model.DemoLink != null && Model.DemoLink != string.Empty)
+@if (Model.ProductDemoModel.DemoLink != null && Model.ProductDemoModel.DemoLink != string.Empty)
 {
     <div class="live-button-div">
-        <button type="button" class="button-1 live-button" onclick="goToDemoPage('@Model.DemoLink')">Live Preview</button>
+        <button type="button" class="button-1 live-button" onclick="goToDemoPage('@Model.ProductDemoModel.DemoLink')">@Model.Settings.ButtonTitle</button>
     </div>
     <script>
         $(function () {
