@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
+using Nop.Plugin.Misc.NopHunter.ImageToWebp.Services;
+using Nop.Services.Media;
 
 namespace Nop.Plugin.Misc.NopHunter.LiveChat.Infrastructure;
 
@@ -22,6 +24,7 @@ public class PluginNopStartup : INopStartup
         {
             options.ViewLocationExpanders.Add(new ViewLocationExpander());
         });
+        services.AddScoped<IPictureService, PictureDemoService>();
     }
 
     /// <summary>
