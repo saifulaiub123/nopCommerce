@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Convert image to webp format(by NopHunter.Net)",
+  "SystemName": "Misc.NopHunter.ImageToWebp",
+  "Version": "4.80.0",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "NopHunter.net",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.NopHunter.ImageToWebp.dll",
+  "Description": "Converts images into the WebP format, enhancing website speed and performance"
+}
