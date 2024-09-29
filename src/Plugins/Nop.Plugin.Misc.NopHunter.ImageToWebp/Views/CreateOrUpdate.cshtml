@@ -1,0 +1,29 @@
+﻿@model ProductDemo
+
+<nop-card asp-name="product-demolink" asp-icon="fas fa-truck" asp-title="@T("Plugins.Misc.LiveButton.DemoLink")" asp-hide-block-attribute-name="DemoLink.HideProductBlock" asp-hide="false" asp-advanced="false">
+    <div class="card-body">
+        <div class="card card-default no-margin">
+            <div class="card-header">
+                @T("Plugins.Shipping.EasyPost.Product.PredefinedPackage")
+            </div>
+            <div class="card-body">
+                <p>
+                    There are common carrier-specific packaging that you can use as predefined constants.
+                    If you use this for your packaging, you don’t need to specify dimensions, just weight.<br />
+                    <a href="https://www.easypost.com/service-levels-and-parcels" target="_blank">Here</a> is the full list of predefined packages supported.<br />
+                    <br />
+                    <em>Note: Predefined packages are only used for a single item in the cart with a quantity of 1, otherwise, dimensions of all items shipped must be specified.</em>
+                </p>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="@T("Plugins.Misc.LiveButton.HasDemoLink")" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ShowInProductPictureBottom" />
+                        <span asp-validation-for="ShowInProductPictureBottom"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nop-card>
