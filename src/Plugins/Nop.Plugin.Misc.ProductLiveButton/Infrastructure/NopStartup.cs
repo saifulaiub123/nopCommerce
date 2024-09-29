@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 using Nop.Plugin.Misc.ProductLiveButton.Services;
+using Nop.Services.Media;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Infrastructure;
 
@@ -20,6 +21,7 @@ public class NopStartup : INopStartup
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IProductDemoService, ProductDemoService>();
+        services.AddScoped<IPictureService, PictureDemoService>();
         services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<ProductDemoActionFilter>();
