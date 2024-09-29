@@ -1,17 +1,11 @@
 ﻿using Nop.Core.Caching;
 using Nop.Core;
 using Nop.Data;
-using Nop.Plugin.Misc.ProductLiveButton;
 using Nop.Plugin.Misc.ProductLiveButton.Domain;
 using Nop.Plugin.Misc.ProductLiveButton.Models;
-using static Nop.Services.Security.StandardPermission;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Core.Domain.Catalog;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Nop.Core.Infrastructure.Mapper;
-using AutoMapper;
-using DocumentFormat.OpenXml.Office2010.Ink;
+using Nop.Plugin.Misc.ProductLiveButton.Infrastructure.Mapper;
 
 namespace Nop.Plugin.Misc.ProductLiveButton.Services;
 public class ProductDemoService : IProductDemoService
