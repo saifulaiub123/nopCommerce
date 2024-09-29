@@ -63,16 +63,21 @@ public class ProductLiveButtonPublicController : BasePluginController
         };
         return View("~/Plugins/Misc.ProductLiveButton/Views/PreviewDemo.cshtml", previewDemoModel);
     }
-    public async Task<IActionResult> GetDemoLinkDataByProductIds(List<int> productIds)
-    {
-        var logoModel = await _commonModelFactory.PrepareLogoModelAsync();
 
-        var previewDemoModel = new PreviewDemoModel()
+    [HttpPost]
+    public async Task<IActionResult> GetDemoLinkDataByProductIds([FromBody] List<int> productIds)
+    {
+        var productDemoModels = await _productDemoService.GetByProductIds(productIds);
+
+        var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
+        var settings = await _settingService.LoadSettingAsync<ProductLiveButtonSettings>(storeScope);
+
+        var publicInfoProductPageModel = new PublicInfoHomeProductPageModel()
         {
-            LogoModel = logoModel,
-            DemoLink = ""
+            ProductDemoModels = productDemoModels,
+            Settings = settings
         };
-        return View("~/Plugins/Misc.ProductLiveButton/Views/PreviewDemo.cshtml", previewDemoModel);
+        return Json(publicInfoProductPageModel);
     }
     #endregion
 }

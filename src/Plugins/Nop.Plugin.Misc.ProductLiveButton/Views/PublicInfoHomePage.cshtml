@@ -1,78 +1,79 @@
 ﻿
 <style>
-    .live-button-div
-    {
+    .live-button-div {
         margin-bottom: 10px;
         text-align: center;
     }
-    .live-button
-    {
+
+    .live-button {
         height: 43px;
         border: 0;
-        background-color: @Model.Settings.ButtonBackgroundColor;
+        /* background-color: red; */
         padding: 0 24px;
         font-size: 15px;
-        color: @Model.Settings.ButtonTextColor;
+        /* color: white; */
     }
 
     .live-button-box {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0;
+        /* bottom: 0; */
         z-index: 1;
+        margin-top: -82px;
         /* height: 39px; */
         opacity: .8;
         display: block;
         /* text-align: center; */
         line-height: 38px;
-        font-size: 1.3rem;
-        text-transform: uppercase;
+        font-size: 15px;
         white-space: nowrap;
         letter-spacing: .3px;
         width: 100%;
         border: none;
-        /* transition: all 0.3s ease 0s, color 0.1s ease 0s;
+        transition: all 0.3s ease 0s, color 0.1s ease 0s;
         -webkit-transition: all 0.3s ease 0s, color 0.1s ease 0s;
         -moz-transition: all 0.3s ease 0s, color 0.1s ease 0s;
         -webkit-transform: translateY(103%) translateZ(0);
         transform: translateY(103%) translateZ(0);
-        -webkit-backface-visibility: hidden; */
+        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
 </style>
-@if (Model.ProductDemoModel.DemoLink != null && Model.ProductDemoModel.DemoLink != string.Empty)
-{
-    
-}
 <script>
     $(function () {
-        alert("Home page button script loaded");
         var productIds = [];
 
         // Loop through each product-item div and extract the data-productid attribute
         $('.product-item').each(function () {
-            var productId = $(this).data('product-id');
+            var productId = $(this).data('productid');
             productIds.push(productId);  // Add each productid to the array
         });
 
         $.ajax({
             cache: false,
             type: "POST",
+            contentType: "application/json; charset=utf-8",
             url: "@(Url.Action("GetDemoLinkDataByProductIds", "ProductLiveButtonPublic"))",
-            data: JSON.stringify({ productIds: productIds }),
+            data: JSON.stringify(productIds),
             success: function (data, textStatus, jqXHR) {
 
-                if(data.length > 0)
-                {
-                    data.each(function(item){
-                        $('.product-item[data-productid="'+item.ProductId+'"] .picture').append('<button type="button" class="button-1 live-button live-button-box" onclick="goToDemoPage(\''+item.DemoLink+'\')">@Model.Settings.ButtonTitle</button>');
+                if (data.ProductDemoModels.length > 0) {
+                    data.ProductDemoModels.forEach(function (item) {
+                        $('.product-item[data-productid="' + item.ProductId + '"] .picture').append('<button type="button" class="button-1 live-button live-button-box" onclick="goToDemoPage(\'' + item.DemoLink + '\')">' + data.Settings.ButtonTitle + '</button>');
+                    })
+                    $(".live-button-box").css({
+                        "margin-top": "-82px"
+                    })
+                    $(".live-button").css({
+                        "background-color": data.Settings.ButtonBackgroundColor,
+                        "color": data.Settings.ButtonTextColor,
                     })
                 }
-               
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                
+
             }
         });
 
