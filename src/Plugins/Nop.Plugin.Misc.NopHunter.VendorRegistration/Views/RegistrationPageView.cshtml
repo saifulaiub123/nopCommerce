@@ -1,0 +1,19 @@
+﻿@inject INopHtmlHelper NopHtml
+@{
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopHunter.VendorRegistration/Content/Scripts/registration-page.js", excludeFromBundle: true);
+}
+<div class="vendor-registration-section">
+    <div class="inputs">
+        <label for="account-type">@T("Plugins.Misc.VendorRegistration.Field.AccountType"):</label>
+        <div id="account-type" class="gender">
+            <span class="customer">
+                <input type="radio" value="C" checked id="account-type-customer" name="AccountType"/>
+                <label class="forcheckbox" for="account-type-customer">@T("Plugins.Misc.VendorRegistration.Field.Customer")</label>
+            </span>
+            <span class="vendor">
+                <input type="radio" value="V" id="account-type-vendor" name="AccountType" />
+                <label class="forcheckbox" for="account-type-vendor">@T("Plugins.Misc.VendorRegistration.Field.Vendor")</label>
+            </span>
+        </div>
+    </div>
+</div>
