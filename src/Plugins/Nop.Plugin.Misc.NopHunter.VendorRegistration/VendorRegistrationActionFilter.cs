@@ -33,6 +33,7 @@ public class VendorRegistrationActionFilter : ActionFilterAttribute
 
         //if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
         //    return Challenge();
+        
         var controller = context.RouteData.Values["controller"].ToString() == "Customer";
         var action = context.RouteData.Values["action"].ToString() == "Register";
         var methodType = context.HttpContext.Request.Method == "POST";
@@ -41,11 +42,18 @@ public class VendorRegistrationActionFilter : ActionFilterAttribute
         {
             var session = context.HttpContext.Session;
             var customer = await session.GetAsync<Customer>(VendorRegistrationDefaults.CustomerAddedSuccessSessionKey);
+            if (string.IsNullOrEmpty(customer.Email))
+                return;
 
             var accountType = context.HttpContext.Request.Form["AccountType"].ToString();
             if (!string.IsNullOrEmpty(accountType) && accountType.Equals("V"))
             {
-                await _vendorRegistrationService.ProcessVendorRegistration(new ApplyVendorModel(), customer);
+                var vendor = new ApplyVendorModel()
+                {
+                    Name = context.HttpContext.Request.Form["VendorName"].ToString(),
+                    Description = context.HttpContext.Request.Form["VendorDescription"]
+                };
+                await _vendorRegistrationService.ProcessVendorRegistration(vendor, customer);
             }
 
             await session.RemoveAsync(VendorRegistrationDefaults.CustomerAddedSuccessSessionKey);

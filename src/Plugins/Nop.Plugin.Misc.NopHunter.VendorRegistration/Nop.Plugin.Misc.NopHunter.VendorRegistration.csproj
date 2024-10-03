@@ -48,6 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Content\Scripts\registration-page.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Views\RegistrationPageView.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

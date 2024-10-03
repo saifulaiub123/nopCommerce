@@ -8,7 +8,8 @@ using Nop.Services.Security;
 
 namespace Nop.Plugin.Misc.VendorRegistration.Events;
 public class CustomerEventConsumer :
-    IConsumer<EntityInsertedEvent<Customer>>
+    IConsumer<EntityInsertedEvent<Customer>>,
+    IConsumer<EntityUpdatedEvent<Customer>>
 {
 
     #region Fields
@@ -33,12 +34,18 @@ public class CustomerEventConsumer :
 
     #endregion
 
-    public async Task HandleEventAsync(EntityInsertedEvent<Customer> eventMessage)
+    public async Task HandleEventAsync(EntityUpdatedEvent<Customer> eventMessage)
     {
         if (eventMessage.Entity is null)
             return;
 
         var session = _httpContextAccessor.HttpContext?.Session;
         await session.SetAsync(VendorRegistrationDefaults.CustomerAddedSuccessSessionKey, eventMessage.Entity);
+    }
+    public async Task HandleEventAsync(EntityInsertedEvent<Customer> eventMessage)
+    {
+        if (eventMessage.Entity is null)
+            return;
+
     }
 }

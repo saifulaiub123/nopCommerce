@@ -1,19 +1,46 @@
-﻿@inject INopHtmlHelper NopHtml
+﻿@model Nop.Web.Models.Vendors.ApplyVendorModel
+@inject INopHtmlHelper NopHtml
 @{
     NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopHunter.VendorRegistration/Content/Scripts/registration-page.js", excludeFromBundle: true);
 }
+
+
 <div class="vendor-registration-section">
-    <div class="inputs">
-        <label for="account-type">@T("Plugins.Misc.VendorRegistration.Field.AccountType"):</label>
-        <div id="account-type" class="gender">
-            <span class="customer">
-                <input type="radio" value="C" checked id="account-type-customer" name="AccountType"/>
-                <label class="forcheckbox" for="account-type-customer">@T("Plugins.Misc.VendorRegistration.Field.Customer")</label>
-            </span>
-            <span class="vendor">
-                <input type="radio" value="V" id="account-type-vendor" name="AccountType" />
-                <label class="forcheckbox" for="account-type-vendor">@T("Plugins.Misc.VendorRegistration.Field.Vendor")</label>
-            </span>
+    <div class="fieldset">
+        <div class="title">
+            <strong>@T("Plugins.Misc.NopHunter.VendorRegistration.FieldSet.VendorDetails")</strong>
+        </div>
+        <div class="form-fields">
+            @* <input type="hidden" value="V" class="account-type-vendor" id="account-type-vendor" name="AccountType" /> *@
+            <div class="inputs">
+                <label for="account-type">@T("Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType"):</label>
+                <div id="account-type" class="gender">
+                    <span class="customer">
+                        <input type="radio" value="C" disabled id="account-type-customer" name="AccountType" />
+                        <label class="forcheckbox" for="account-type-customer">@T("Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Customer")</label>
+                    </span>
+                    <span class="vendor">
+                        <input type="radio" value="V" disabled checked id="account-type-vendor" name="AccountType" />
+                        <label class="forcheckbox" for="account-type-vendor">@T("Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Vendor")</label>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs">
+                <label asp-for="Name" asp-postfix=":"></label>
+                <input asp-for="Name" class="name" name="VendorName" placeholder="@T("Vendors.ApplyAccount.Name.Hint")" />
+                <nop-required />
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="inputs">
+                <label asp-for="Description" asp-postfix=":"></label>
+                <textarea asp-for="Description" name="VendorDescription" class="description"></textarea>
+            </div>
+            @* <div class="inputs">
+                <label>@T("Vendors.ApplyAccount.Picture"):</label>
+                <input name="VendorUploadedFile" type="file" accept="image/*" />
+            </div> *@
         </div>
     </div>
+    
 </div>

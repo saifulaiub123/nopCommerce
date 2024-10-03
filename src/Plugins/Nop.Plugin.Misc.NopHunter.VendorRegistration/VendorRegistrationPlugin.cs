@@ -130,9 +130,10 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.EditEmailTemplateTitle"] = "Update email template for vendor",
 
                 //public
-                ["Plugins.Misc.VendorRegistration.Field.AccountType"] = "Account type",
-                ["Plugins.Misc.VendorRegistration.Field.Customer"] = "Customer",
-                ["Plugins.Misc.VendorRegistration.Field.Vendor"] = "Vendor",
+                ["Plugins.Misc.NopHunter.VendorRegistration.FieldSet.VendorDetails"] = "Vendor details",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType"] = "Account type",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Customer"] = "Customer",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Vendor"] = "Vendor",
             });
 
             var emailAccountSettings = await _settingService.LoadSettingAsync<EmailAccountSettings>();
@@ -142,10 +143,10 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
                 Name = VendorRegistrationDefaults.NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION,
                 Subject = "%Store.Name% - Vendor account is pending to Active",
                 Body = $@"<p><a href=""%Store.URL%"">%Store.Name%</a> <br /><br />Your vendor account for <strong>%Store.Name% </strong>has been created with below details.</p>
-                        <p><br />Vendor name: %Vendor.Name% <br />Vendor email: %Vendor.Email% <br /><br />Your account is currently in <strong>Pending </strong>state. Once it will approve by the admin you can access to the <strong>Admin Panel</strong></p>
+                        <p><br />Vendor name: %Vendor.Name% <br />Vendor email: %Vendor.Email% <br /><br />Your account is currently in <strong>Pending </strong>state. Once it approves you can access to the <strong>Admin Panel</strong> by login with the credential</p>
                         <p>For any type of help email us at <a href=""mailto:contact@digitalmart.com"">contact@digitalmart.com</a>
                     </p>",
-                IsActive = false,
+                IsActive = true,
                 AttachedDownloadId = 0,
                 EmailAccountId = emailAccountSettings.DefaultEmailAccountId,
                 LimitedToStores = false,
@@ -184,6 +185,9 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
         //locales
         await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.VendorRegistration");
 
+        //Message Template
+        //var messageTemplate = await _messageTemplateService.GetMessageTemplatesByNameAsync(VendorRegistrationDefaults.NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION);
+        //await _messageTemplateService.DeleteMessageTemplateAsync(messageTemplate.FirstOrDefault());
         await base.UninstallAsync();
     }
 

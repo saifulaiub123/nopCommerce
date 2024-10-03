@@ -5,7 +5,7 @@
 /// </summary>
 public static class VendorRegistrationDefaults
 {
-    public static string SystemName => "Misc.VendorRegistration";
+    public static string SystemName => "Misc.NopHunter.VendorRegistration";
     public static string ConfigurationRouteName => "Plugin.Misc.NopHunter.VendorRegistration.Configure";
     public static string CustomerAddedSuccessSessionKey => "_customerAddedSuccessSessionKey_";
 

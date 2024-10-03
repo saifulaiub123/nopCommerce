@@ -238,6 +238,14 @@ public class VendorRegistrationService : IVendorRegistrationService
         customer.VendorId = vendor.Id;
         await _customerService.UpdateCustomerAsync(customer);
 
+        if (!await _customerService.IsVendorAsync(customer))
+        {
+            var customerRole = await _customerService.GetCustomerRoleBySystemNameAsync(NopCustomerDefaults.VendorsRoleName);
+            await _customerService.AddCustomerRoleMappingAsync(new CustomerCustomerRoleMapping { CustomerId = customer.Id, CustomerRoleId = customerRole.Id });
+        }
+        //NopCustomerDefaults.VendorsRoleName
+        
+
         //notify store owner here (email)
         await _workflowMessageService.SendNewVendorAccountApplyStoreOwnerNotificationAsync(customer, vendor, _localizationSettings.DefaultAdminLanguageId);
         await _vendorWorkflowMessageService.SendVendorAccountCreationNotificationToVendor(customer, vendor, _localizationSettings.DefaultAdminLanguageId);
