@@ -42,7 +42,7 @@ public class VendorRegistrationActionFilter : ActionFilterAttribute
         {
             var session = context.HttpContext.Session;
             var customer = await session.GetAsync<Customer>(VendorRegistrationDefaults.CustomerAddedSuccessSessionKey);
-            if (string.IsNullOrEmpty(customer.Email))
+            if (customer != null && string.IsNullOrEmpty(customer.Email))
                 return;
 
             var accountType = context.HttpContext.Request.Form["AccountType"].ToString();

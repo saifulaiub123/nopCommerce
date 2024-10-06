@@ -162,10 +162,6 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
             transaction.Dispose();
             throw;
         }
-        
-        
-
-       
     }
 
     /// <summary>
@@ -183,11 +179,13 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
         await _settingService.DeleteSettingAsync<VendorRegistrationSettings>();
 
         //locales
-        await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.VendorRegistration");
+        await _localizationService.DeleteLocaleResourcesAsync("Plugins.Misc.NopHunter.VendorRegistration");
 
         //Message Template
-        //var messageTemplate = await _messageTemplateService.GetMessageTemplatesByNameAsync(VendorRegistrationDefaults.NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION);
-        //await _messageTemplateService.DeleteMessageTemplateAsync(messageTemplate.FirstOrDefault());
+        var messageTemplates = await _messageTemplateService.GetMessageTemplatesByNameAsync(VendorRegistrationDefaults.NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION);
+        if(messageTemplates.Any())
+            await _messageTemplateService.DeleteMessageTemplateAsync(messageTemplates.First());
+        
         await base.UninstallAsync();
     }
 

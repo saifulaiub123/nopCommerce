@@ -14,8 +14,10 @@ using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
+using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Localization;
+using Nop.Web.Areas.Admin.Models.Vendors;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
@@ -36,6 +38,8 @@ public class VendorRegistrationAdminController : BasePluginController
     protected readonly IPermissionService _permissionService;
     protected readonly ISettingService _settingService;
     protected readonly IStoreContext _storeContext;
+    protected readonly IVendorModelFactory _vendorModelFactory;
+
 
     #endregion
 
@@ -46,13 +50,15 @@ public class VendorRegistrationAdminController : BasePluginController
         INotificationService notificationService,
         IPermissionService permissionService,
         ISettingService settingService,
-        IStoreContext storeContext)
+        IStoreContext storeContext,
+        IVendorModelFactory vendorModelFactory)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
         _permissionService = permissionService;
         _settingService = settingService;
         _storeContext = storeContext;
+        _vendorModelFactory = vendorModelFactory;
     }
 
     #endregion
@@ -66,10 +72,10 @@ public class VendorRegistrationAdminController : BasePluginController
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
         var settings = await _settingService.LoadSettingAsync<VendorRegistrationSettings>(storeScope);
 
-        var model = new ConfigurationModel();
-        
+        //var model = new ConfigurationModel();
+        var model = await _vendorModelFactory.PrepareVendorSearchModelAsync(new VendorSearchModel());
 
-        return View("~/Plugins/Misc.VendorRegistration/Views/Configure.cshtml", model);
+        return View("~/Plugins/Misc.NopHunter.VendorRegistration/Views/Configure.cshtml", model);
     }
 
     [HttpPost]
