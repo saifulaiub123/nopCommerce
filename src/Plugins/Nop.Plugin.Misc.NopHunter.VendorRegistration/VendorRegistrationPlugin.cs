@@ -131,6 +131,9 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
 
                 //public
                 ["Plugins.Misc.NopHunter.VendorRegistration.FieldSet.VendorDetails"] = "Vendor details",
+                ["Plugins.Misc.NopHunter.VendorRegistration.FieldSet.PersonalDetails"] = "Personal details",
+                ["Plugins.Misc.NopHunter.VendorRegistration.FieldSet.Password"] = "Password",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Field.Button.Apply"] = "Apply",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType"] = "Account type",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Customer"] = "Customer",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Vendor"] = "Vendor",

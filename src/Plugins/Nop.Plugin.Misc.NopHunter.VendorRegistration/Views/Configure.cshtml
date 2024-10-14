@@ -41,7 +41,7 @@
 
                         <div class="search-body @(hideSearchBlock ? "closed" : "")">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group row">
                                         <div class="col-md-4">
                                             <nop-label asp-for="SearchName" />
@@ -51,7 +51,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="SearchEmail" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="SearchEmail" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group row">
                                         <div class="col-md-4">
                                             <nop-label asp-for="SearchEmail" />
