@@ -2,7 +2,6 @@
 
 @{
     Layout = "_ColumnsOne";
-
     //title
     NopHtml.AddTitleParts(T("PageTitle.Vendors.Apply").Text);
     //page class
@@ -23,7 +22,9 @@
         }
         else
         {
-            <form asp-route="Register" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
+            @await Html.PartialAsync("_CustomerForm", Model.Customer)
+            @await Html.PartialAsync("_VendorForm", Model.Vendor)
+            @* <form asp-route="Register" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="on" id="registration-form">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
                 <div class="fieldset">
                     <div class="title">
@@ -31,25 +32,17 @@
                     </div>
                     <div class="form-fields">
                         <div class="inputs">
-                            <label asp-for="Vendor.Name" asp-postfix=":"></label>
-                            <input asp-for="Vendor.Name" class="name" placeholder="@T("Vendors.ApplyAccount.Name.Hint")" />
+                            <label asp-for="@VendorModel.Name" asp-postfix=":"></label>
+                            <input asp-for="@VendorModel.Name" class="name" placeholder="@T("Vendors.ApplyAccount.Name.Hint")" />
                             <nop-required />
-                            <span asp-validation-for="Vendor.Name"></span>
+                            <span asp-validation-for="@VendorModel.Name"></span>
                         </div>
-                        @* <div class="inputs">
-                    <label asp-for="Email" asp-postfix=":"></label>
-                    <input asp-for="Email" class="name" placeholder="@T("Vendors.ApplyAccount.Email.Hint")" />
-                    <nop-required />
-                    <span asp-validation-for="Email"></span>
-                    </div> *@
+                       
                         <div class="inputs">
-                            <label asp-for="Vendor.Description" asp-postfix=":"></label>
-                            <textarea asp-for="Vendor.Description" class="description"></textarea>
+                            <label asp-for="@VendorModel.Description" asp-postfix=":"></label>
+                            <textarea asp-for="@VendorModel.Description" class="description"></textarea>
                         </div>
-                        @* <div class="inputs">
-                    <label>@T("Vendors.ApplyAccount.Picture"):</label>
-                    <input name="uploadedFile" type="file" accept="image/*" />
-                    </div> *@
+                        
                         @await Html.PartialAsync("_VendorAttributes", Model.Vendor.VendorAttributes)
                         @if (Model.Vendor.DisplayCaptcha)
                         {
@@ -496,7 +489,12 @@
                     <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Plugins.Misc.NopHunter.VendorRegistration.Field.Button.Apply")</button>
                 </div>
             </form>
+         *@
         }
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ApplyVendorBottom, additionalData = Model })
     </div>
 </div>
+
+<script asp-location="Footer">
+    $(".page-body form:first").prepend($(".vendor-registration-section"));
+</script>

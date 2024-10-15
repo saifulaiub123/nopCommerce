@@ -14,7 +14,14 @@ public class ViewEngine : IViewLocationExpander
         {
             viewLocations = new[] { "~/Plugins/Misc.NopHunter.VendorRegistration/Views/Vendor/ApplyVendor.cshtml" }.Concat(viewLocations);
         }
-
+        else if (context.AreaName == null && context.ViewName == "_CustomerForm")
+        {
+            viewLocations = new[] { "~/Plugins/Misc.NopHunter.VendorRegistration/Views/Vendor/_CustomerForm.cshtml" }.Concat(viewLocations);
+        }
+        else if (context.AreaName == null && context.ViewName == "_VendorForm")
+        {
+            viewLocations = new[] { "~/Plugins/Misc.NopHunter.VendorRegistration/Views/Vendor/_VendorForm.cshtml" }.Concat(viewLocations);
+        }
         return viewLocations;
     }
 

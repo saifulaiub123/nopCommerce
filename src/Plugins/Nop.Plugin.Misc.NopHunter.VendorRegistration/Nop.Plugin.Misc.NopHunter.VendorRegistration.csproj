@@ -24,7 +24,9 @@
     <None Remove="Views\Configure.cshtml" />
     <None Remove="Views\Vendor\ApplyVendor.cshtml" />
     <None Remove="Views\Vendor\Info.cshtml" />
+    <None Remove="Views\Vendor\_CustomerForm.cshtml" />
     <None Remove="Views\Vendor\_VendorAttributes.cshtml" />
+    <None Remove="Views\Vendor\_VendorForm.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
   </ItemGroup>
 
@@ -47,6 +49,16 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Vendor\_CustomerForm.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Vendor\_VendorForm.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Views\Vendor\_VendorAttributes.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

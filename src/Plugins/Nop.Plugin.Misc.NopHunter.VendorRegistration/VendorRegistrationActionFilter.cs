@@ -6,6 +6,7 @@ using Nop.Core.Domain.Vendors;
 using Nop.Core.Http.Extensions;
 using Nop.Plugin.Misc.VendorRegistration.Models;
 using Nop.Plugin.Misc.VendorRegistration.Services;
+using Nop.Services.Cms;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Vendors;
 
@@ -13,15 +14,22 @@ namespace Nop.Plugin.Misc.VendorRegistration;
 public class VendorRegistrationActionFilter : ActionFilterAttribute
 {
     protected readonly IVendorRegistrationService _vendorRegistrationService;
+    protected readonly IWidgetPluginManager _widgetPluginManager;
 
-    public VendorRegistrationActionFilter(IVendorRegistrationService vendorRegistrationService)
+    public VendorRegistrationActionFilter(
+        IVendorRegistrationService vendorRegistrationService, 
+        IWidgetPluginManager widgetPluginManager)
     {
         _vendorRegistrationService = vendorRegistrationService;
+        _widgetPluginManager = widgetPluginManager;
     }
+
 
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         if (context.Result == null)
+            await next();
+        if (!await _widgetPluginManager.IsPluginActiveAsync(VendorRegistrationDefaults.SystemName))
             await next();
 
         await HandleVendorRegistrationForm(context);
@@ -45,7 +53,7 @@ public class VendorRegistrationActionFilter : ActionFilterAttribute
             if (customer != null && string.IsNullOrEmpty(customer.Email))
                 return;
 
-            var accountType = context.HttpContext.Request.Form["AccountType"].ToString();
+            var accountType = "V";
             if (!string.IsNullOrEmpty(accountType) && accountType.Equals("V"))
             {
                 var vendor = new ApplyVendorModel()
