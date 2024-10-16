@@ -137,9 +137,12 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType"] = "Account type",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Customer"] = "Customer",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.AccountType.Vendor"] = "Vendor",
+
                 ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.SearchIsActive"] = "Is Active",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate"] = "Activate",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail"] = "Activate & Send Mail",
+
+                ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected"] = "No vendors selected",
             });
 
             var emailAccountSettings = await _settingService.LoadSettingAsync<EmailAccountSettings>();

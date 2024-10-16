@@ -372,13 +372,12 @@ columns: [
                             buttonDisableValue = buttonCustom.ButtonDisable.Value.ToString();
                             <text>
                                 render: function (data, type, row, meta) {
-                                    
                                     if(row['@(buttonCustom.ButtonDisable.ColumnName)'].toString() === "@buttonDisableValue")
                                     {
                                         return '<button type="button" class="@buttonCustom.ClassName btn-sm" disabled>@JavaScriptEncoder.Default.Encode(buttonCustom.Title)</button>'
                                     }
-                                    
-                               
+                                    return '<button type="button" class="@buttonCustom.ClassName btn-sm">@JavaScriptEncoder.Default.Encode(buttonCustom.Title)</button>'
+                                },
                                     
                             </text>
                         }
@@ -387,30 +386,9 @@ columns: [
                             <text>
                                 render: function (data, type, row, meta) {
                                     return '<button type="button" class="@buttonCustom.ClassName btn-sm">@JavaScriptEncoder.Default.Encode(buttonCustom.Title)</button>'
+                                },
                             </text>
-                            
                         }
-                        <text>
-                        @* @if (buttonCustom.ButtonDisable != null)
-                        {
-                            disable = row == 'true' ? 'false' : 'true';
-
-                        }
-                            
-                            return '<button 
-                                type="button" 
-                                class="@buttonCustom.ClassName btn-sm"
-                                @{
-                                    if (disable == 'true')
-                                    {
-                                        @:disabled="disabled"
-                                    }
-                                }
-                                onclick="@buttonCustom.OnClickFunctionName' + '(\'' + data + '\');">
-                                @JavaScriptEncoder.Default.Encode(buttonCustom.Title)
-                                </button>'; *@
-                        },
-                        </text>
                     }
                     break;
                 case RenderPicture picture:

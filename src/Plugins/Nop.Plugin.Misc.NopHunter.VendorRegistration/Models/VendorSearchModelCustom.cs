@@ -9,7 +9,7 @@ public record VendorSearchModelCustom : VendorSearchModel
     {
         AvailableActiveValues = new List<SelectListItem>();
     }
-    [NopResourceDisplayName("Admin.Vendors.List.SearchIsActive")]
+    [NopResourceDisplayName("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.SearchIsActive")]
     public bool? SearchIsActive { get; set; } = false;
     public IList<SelectListItem> AvailableActiveValues { get; set; }
 }

@@ -133,5 +133,34 @@ public class VendorRegistrationAdminController : BasePluginController
 
         return Json(model);
     }
+
+
+    [HttpPost]
+    [CheckPermission(StandardPermission.Customers.VENDORS_CREATE_EDIT_DELETE)]
+    public virtual async Task<IActionResult> ActivateVendor(string selectedIds,bool isSendEmail)
+    {
+        //var orders = new List<Vendor>();
+        //if (selectedIds != null)
+        //{
+        //    var ids = selectedIds
+        //        .Split(_separator, StringSplitOptions.RemoveEmptyEntries)
+        //        .Select(x => Convert.ToInt32(x))
+        //        .ToArray();
+        //    orders.AddRange(await (await _orderService.GetOrdersByIdsAsync(ids))
+        //        .WhereAwait(HasAccessToOrderAsync).ToListAsync());
+        //}
+
+        //try
+        //{
+        //    var xml = await _exportManager.ExportOrdersToXmlAsync(orders);
+        //    return File(Encoding.UTF8.GetBytes(xml), MimeTypes.ApplicationXml, "orders.xml");
+        //}
+        //catch (Exception exc)
+        //{
+        //    await _notificationService.ErrorNotificationAsync(exc);
+        //    return RedirectToAction("List");
+        //}
+        return Ok();
+    }
     #endregion
 }

@@ -26,12 +26,25 @@
         <div class="form-horizontal">
             <div class="cards-group">
                 <div class="card card-default card-search">
-                    <div class="card-body">
+                    <div class="card-header">
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
                             <div class="search-text">@T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
-                            <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                            <div class="card-tools icon-collapse">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>
+                            @* <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div> *@
                         </div>
+                        @* <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                            <div class="search-text">@T("Admin.Common.Search")</div>
+                            <div class="card-tools icon-collapse">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>
+                        </div> *@
+                        
+                    </div>
+                    <div class="card-body">
+                        
 
                         <div class="search-body @(hideSearchBlock ? "closed" : "")">
                             <div class="row">
@@ -67,8 +80,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="text-center col-12">
-                                    <button type="button" id="search-vendors" class="btn btn-primary btn-search">
+                                <div class="col-12">
+                                    <button type="button" id="search-vendors" class="btn btn-primary btn-search float-right">
                                         <i class="fas fa-search"></i>
                                         @T("Admin.Common.Search")
                                     </button>
@@ -91,6 +104,14 @@
                                         @T("Admin.Common.AddNew")
                                     </a>
                                 </div>
+                                <button type="button" name="importexcel" class="btn bg-olive float-right mr-1" id="activate-selected-send-email">
+                                    <i class="fas fa-paper-plane"></i>
+                                    @T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail")
+                                </button>
+                                <button type="button" name="importexcel" class="btn bg-olive float-right mr-1" id="activate-selected">
+                                    <i class="fas fa-check-square"></i>
+                                    @T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate")
+                                </button>
                             </div>
                         </div>
 
@@ -134,9 +155,10 @@
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
-                                new ColumnProperty(nameof(CurrencyModel.Id))
+                                new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
                                 {
                                     Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text,
+                                    Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text)
                                     {
@@ -144,17 +166,23 @@
                                         ButtonDisable = new ButtonDisable()
                                         {
                                             ColumnName = nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Active),
-                                            Value = "false"
+                                            Value = "true"
                                         }
                                     }
                                 },
-                                new ColumnProperty(nameof(CurrencyModel.Id))
+                                new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
                                 {
                                     Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text,
+                                    Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text)
                                     {
-                                        OnClickFunctionName =  "activateVendorAndSendMail"
+                                        OnClickFunctionName =  "activateVendorAndSendMail",
+                                        ButtonDisable = new ButtonDisable()
+                                        {
+                                            ColumnName = nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Active),
+                                            Value = "true"
+                                        }
                                     }
                                 },
                                 new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
@@ -172,15 +200,47 @@
         </div>
     </div>
 </section>
-<script asp-location="Footer">
-    $(function () {
-        $('#vendors-grid table tr').each(function () {
-            var activeValue = $(this).find('.false-icon'); // Get the text of the active field
-            if (activeValue) {
-                $(this).find('.action-btn').prop('disabled', true); // Disable button if active is "No"
-            } else {
-                $(this).find('.action-btn').prop('disabled', false); // Enable button if active is "Yes"
+
+<form asp-controller="VendorRegistrationAdmin" asp-action="ActivateVendor" method="post" id="activate-selected-vendor-form">
+    <input type="hidden" id="selectedIds" name="selectedIds" value="" />
+    <input type="checkbox" id="isSendEmail" name="isSendEmail" value="false" />
+</form>
+
+<script>
+    $(function() {
+        $('#activate-selected').on('click',function (e) {
+            e.preventDefault();
+            var ids = selectedIds.join(",");
+            alert(ids);
+            if (!ids) {
+                $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
+                $("#activatedSelected").trigger("click");
             }
+            else {
+                $('#activate-selected-vendor-form #selectedIds').val(ids);
+                $('#activate-selected-vendor-form').submit();
+                updateTable('#vendors-grid');
+            }
+            return false;
+        });
+
+        $('#activate-selected-send-email').on('click',function (e) {
+            e.preventDefault();
+            var ids = selectedIds.join(",");
+            alert(ids);
+
+            if (!ids) {
+                $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
+                $("#activatedSelected").trigger("click");
+            }
+            else {
+                $('#activate-selected-vendor-form #selectedIds').val(ids);
+                $('#activate-selected-vendor-form #isSendEmail').prop('checked', true);
+                $('#activate-selected-vendor-form').submit();
+                updateTable('#vendors-grid');
+            }
+            return false;
         });
     });
 </script>
+<nop-alert asp-alert-id="activatedSelected" />
