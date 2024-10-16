@@ -1,12 +1,13 @@
-﻿@model VendorSearchModel
-@using Nop.Web.Areas.Admin.Models.Vendors;
+﻿@model VendorSearchModelCustom
+@using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
+@using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models.DataTables
 
 @{
     Layout = "_ConfigurePlugin";
     //page title
     ViewBag.PageTitle = T("Admin.Vendors").Text;
     //active menu item (system name)
-    NopHtml.SetActiveMenuItemSystemName("Vendors");
+    //NopHtml.SetActiveMenuItemSystemName("Vendors");
 }
 
 @{
@@ -17,14 +18,7 @@
 <div class="content-header clearfix">
     <h1 class="float-left">
         @T("Admin.Vendors")
-    </h1>
-    <div class="float-right">
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
-        </a>
-        @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.VendorListButtons, additionalData = Model })
-    </div>
+    </h1> 
 </div>
 
 <section class="content">
@@ -64,10 +58,10 @@
                                 <div class="col-md-4">
                                     <div class="form-group row">
                                         <div class="col-md-4">
-                                            <nop-label asp-for="SearchEmail" />
+                                            <nop-label asp-for="SearchIsActive" />
                                         </div>
                                         <div class="col-md-8">
-                                            <nop-editor asp-for="SearchEmail" />
+                                            <nop-select asp-for="SearchIsActive" class="form-control" asp-items="Model.AvailableActiveValues" />
                                         </div>
                                     </div>
                                 </div>
@@ -86,19 +80,32 @@
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.VendorManagement", Docs.VendorManagement + Utm.OnAdmin)" />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.VendorManagement", Docs.VendorManagement + Utm.OnAdmin)" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="float-right">
+                                    <a asp-controller="Vendor" asp-action="Create" class="btn btn-primary">
+                                        <i class="fas fa-plus-square"></i>
+                                        @T("Admin.Common.AddNew")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-                        @await Html.PartialAsync("Table", new DataTablesModel
+                        @await Html.PartialAsync("~/Plugins/Misc.NopHunter.VendorRegistration/Areas/Admin/Views/Shared/TableCustom.cshtml", new DataTablesModel
                         {
                            Name = "vendors-grid",
-                           UrlRead = new DataUrl("List", "Vendor", null),
+                           UrlRead = new DataUrl("List", "VendorRegistrationAdmin", null),
                            SearchButtonId = "search-vendors",
                            Length = Model.PageSize,
                            LengthMenu = Model.AvailablePageSizes,
                            Filters = new List<FilterParameter>
                            {
                                 new FilterParameter(nameof(Model.SearchName)),
-                                new FilterParameter(nameof(Model.SearchEmail))
+                                new FilterParameter(nameof(Model.SearchEmail)),
+                                new FilterParameter(nameof(Model.SearchIsActive))
                            },
 
                            ColumnCollection = new List<ColumnProperty>
@@ -127,12 +134,35 @@
                                     ClassName =  NopColumnClassDefaults.CenterAll,
                                     Render = new RenderBoolean()
                                 },
+                                new ColumnProperty(nameof(CurrencyModel.Id))
+                                {
+                                    Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text)
+                                    {
+                                        OnClickFunctionName =  "activateVendor",
+                                        ButtonDisable = new ButtonDisable()
+                                        {
+                                            ColumnName = nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Active),
+                                            Value = "false"
+                                        }
+                                    }
+                                },
+                                new ColumnProperty(nameof(CurrencyModel.Id))
+                                {
+                                    Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text,
+                                    ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text)
+                                    {
+                                        OnClickFunctionName =  "activateVendorAndSendMail"
+                                    }
+                                },
                                 new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
                                 {
                                     Title = T("Admin.Common.Edit").Text,
                                     Width = "50",
                                     ClassName =  NopColumnClassDefaults.Button,
-                                    Render = new RenderButtonEdit(new DataUrl("Edit"))
+                                    Render = new RenderButtonEdit(new DataUrl("~/Admin/Vendor/Edit/", nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id)))
                                 }
                             }
                         })
@@ -142,3 +172,15 @@
         </div>
     </div>
 </section>
+<script asp-location="Footer">
+    $(function () {
+        $('#vendors-grid table tr').each(function () {
+            var activeValue = $(this).find('.false-icon'); // Get the text of the active field
+            if (activeValue) {
+                $(this).find('.action-btn').prop('disabled', true); // Disable button if active is "No"
+            } else {
+                $(this).find('.action-btn').prop('disabled', false); // Enable button if active is "Yes"
+            }
+        });
+    });
+</script>

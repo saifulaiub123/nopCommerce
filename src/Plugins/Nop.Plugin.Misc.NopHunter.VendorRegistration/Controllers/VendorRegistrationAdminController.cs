@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Localization;
 using Nop.Data;
+using Nop.Plugin.Misc.NopHunter.VendorRegistration.Factory;
+using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
 using Nop.Plugin.Misc.VendorRegistration.Domain;
 using Nop.Plugin.Misc.VendorRegistration.Models;
 using Nop.Plugin.Misc.VendorRegistration.Services;
@@ -40,6 +42,8 @@ public class VendorRegistrationAdminController : BasePluginController
     protected readonly IStoreContext _storeContext;
     protected readonly IVendorModelFactory _vendorModelFactory;
 
+    protected readonly IVendorModelFactoryCustom _vendorModelFactoryCustom;
+
 
     #endregion
 
@@ -51,7 +55,9 @@ public class VendorRegistrationAdminController : BasePluginController
         IPermissionService permissionService,
         ISettingService settingService,
         IStoreContext storeContext,
-        IVendorModelFactory vendorModelFactory)
+        IVendorModelFactory vendorModelFactory,
+
+        IVendorModelFactoryCustom vendorModelFactoryCustom)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
@@ -59,6 +65,8 @@ public class VendorRegistrationAdminController : BasePluginController
         _settingService = settingService;
         _storeContext = storeContext;
         _vendorModelFactory = vendorModelFactory;
+
+        _vendorModelFactoryCustom = vendorModelFactoryCustom;
     }
 
     #endregion
@@ -73,7 +81,7 @@ public class VendorRegistrationAdminController : BasePluginController
         var settings = await _settingService.LoadSettingAsync<VendorRegistrationSettings>(storeScope);
 
         //var model = new ConfigurationModel();
-        var model = await _vendorModelFactory.PrepareVendorSearchModelAsync(new VendorSearchModel());
+        var model = await _vendorModelFactoryCustom.PrepareVendorSearchModelAsync(new VendorSearchModelCustom());
 
         return View("~/Plugins/Misc.NopHunter.VendorRegistration/Views/Configure.cshtml", model);
     }
@@ -106,5 +114,24 @@ public class VendorRegistrationAdminController : BasePluginController
         return await Configure();
     }
 
+
+    [CheckPermission(StandardPermission.Customers.VENDORS_VIEW)]
+    public virtual async Task<IActionResult> List()
+    {
+        //prepare model
+        var model = await _vendorModelFactoryCustom.PrepareVendorSearchModelAsync(new VendorSearchModelCustom());
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [CheckPermission(StandardPermission.Customers.VENDORS_VIEW)]
+    public virtual async Task<IActionResult> List(VendorSearchModelCustom searchModel)
+    {
+        //prepare model
+        var model = await _vendorModelFactoryCustom.PrepareVendorListModelAsync(searchModel);
+
+        return Json(model);
+    }
     #endregion
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Nop.Web.Framework;
 
 namespace Nop.Plugin.Misc.NopHunter.VendorRegistration.Infrastructure;
 public class ViewEngine : IViewLocationExpander
@@ -22,6 +23,10 @@ public class ViewEngine : IViewLocationExpander
         {
             viewLocations = new[] { "~/Plugins/Misc.NopHunter.VendorRegistration/Views/Vendor/_VendorForm.cshtml" }.Concat(viewLocations);
         }
+        //else if (context.AreaName == AreaNames.ADMIN && context.ViewName == "_Table.Definition")
+        //{
+        //    viewLocations = new[] { "~/Plugins/Misc.NopHunter.VendorRegistration/Areas/Admin/Views/Shared/_Table.Definition.cshtml" }.Concat(viewLocations);
+        //}
         return viewLocations;
     }
 

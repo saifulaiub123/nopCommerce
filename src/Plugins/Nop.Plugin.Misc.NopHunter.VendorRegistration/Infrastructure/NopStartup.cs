@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 using Nop.Plugin.Misc.NopHunter.VendorRegistration.Controllers;
+using Nop.Plugin.Misc.NopHunter.VendorRegistration.Factory;
 using Nop.Plugin.Misc.NopHunter.VendorRegistration.Infrastructure;
 using Nop.Plugin.Misc.NopHunter.VendorRegistration.Services;
 using Nop.Plugin.Misc.VendorRegistration.Services;
@@ -27,6 +28,8 @@ public class NopStartup : INopStartup
     {
         services.AddScoped<IVendorRegistrationService, VendorRegistrationService>();
         services.AddScoped<IVendorWorkflowMessageService, VendorWorkflowMessageService>();
+        services.AddScoped<IVendorServiceCustom, VendorServiceCustom>();
+        services.AddScoped<IVendorModelFactoryCustom, VendorModelFactoryCustom>();
         services.AddScoped<VendorController, VendorCustomController>();
         services.Configure<MvcOptions>(options =>
         {
