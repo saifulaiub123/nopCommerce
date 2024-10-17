@@ -11,6 +11,7 @@ public static class VendorRegistrationDefaults
 
     //Message
     public static string NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION => "Plugin.Misc.NopHunter.VendorRegistration.VendorNotificationAfterAccountCreation";
+    public static string VENDOR_ACCOUNT_ACTIVATION_NOTIFICATION => "Plugin.Misc.NopHunter.VendorRegistration.VendorAccountActivationNotification";
 
     
 }

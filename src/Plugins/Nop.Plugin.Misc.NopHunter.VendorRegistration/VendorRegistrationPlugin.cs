@@ -125,6 +125,12 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
 
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
+                //common
+                ["Plugins.Misc.NopHunter.VendorRegistration.Common.Success"] = "Success",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Common.Error"] = "Error",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Common.ErrorMessage"] = "Something went wrong",
+                ["Plugins.Misc.NopHunter.VendorRegistration.Common.UpdateSuccess"] = "Successfully updated",
+
                 //admin 
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.EditVendorInfoTitle"] = "Update vendor",
                 ["Plugins.Misc.NopHunter.VendorRegistration.Field.EditEmailTemplateTitle"] = "Update email template for vendor",
@@ -143,6 +149,7 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
                 ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail"] = "Activate & Send Mail",
 
                 ["Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected"] = "No vendors selected",
+                
             });
 
             var emailAccountSettings = await _settingService.LoadSettingAsync<EmailAccountSettings>();
@@ -155,6 +162,20 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
                         <p><br />Vendor name: %Vendor.Name% <br />Vendor email: %Vendor.Email% <br /><br />Your account is currently in <strong>Pending </strong>state. Once it approves you can access to the <strong>Admin Panel</strong> by login with the credential</p>
                         <p>For any type of help email us at <a href=""mailto:contact@digitalmart.com"">contact@digitalmart.com</a>
                     </p>",
+                IsActive = true,
+                AttachedDownloadId = 0,
+                EmailAccountId = emailAccountSettings.DefaultEmailAccountId,
+                LimitedToStores = false,
+                DelayBeforeSend = null,
+                DelayPeriod = MessageDelayPeriod.Hours
+            });
+            await _messageTemplateService.InsertMessageTemplateAsync(new MessageTemplate()
+            {
+                Name = VendorRegistrationDefaults.VENDOR_ACCOUNT_ACTIVATION_NOTIFICATION,
+                Subject = "%Vendor.Name% Activated",
+                Body = $@"<p><a>%Store.Name%</a> <br /><br />Your vendor account for <strong>%Store.Name% </strong>has been activated.</p>
+                          <p><br />Vendor name: %Vendor.Name% <br />Vendor email: %Vendor.Email% <br /><br />Go to <a href=""%Store.URL%admin"" target=""_blank"" rel=""noopener"">Dashboard</a> by login with your credential.</p>
+                          <p>For any type of help email us at <a>contact@digitalmart.com</a></p>",
                 IsActive = true,
                 AttachedDownloadId = 0,
                 EmailAccountId = emailAccountSettings.DefaultEmailAccountId,
@@ -192,6 +213,10 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
 
         //Message Template
         var messageTemplates = await _messageTemplateService.GetMessageTemplatesByNameAsync(VendorRegistrationDefaults.NEW_VENDOR_ACCOUNT_APPLY_STORE_VENDOR_NOTIFICATION);
+        if(messageTemplates.Any())
+            await _messageTemplateService.DeleteMessageTemplateAsync(messageTemplates.First());
+
+        messageTemplates = await _messageTemplateService.GetMessageTemplatesByNameAsync(VendorRegistrationDefaults.VENDOR_ACCOUNT_ACTIVATION_NOTIFICATION);
         if(messageTemplates.Any())
             await _messageTemplateService.DeleteMessageTemplateAsync(messageTemplates.First());
         

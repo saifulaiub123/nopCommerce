@@ -82,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <button type="button" id="search-vendors" class="btn btn-primary btn-search float-right">
+                                <div class="text-center col-12">
+                                    <button type="button" id="search-vendors" class="btn btn-primary btn-search">
                                         <i class="fas fa-search"></i>
                                         @T("Admin.Common.Search")
                                     </button>
@@ -218,10 +218,10 @@
                 $("#activatedSelected").trigger("click");
             }
             else {
-                //$('#activate-selected-vendor-form #selectedIds').val(ids);
-                //activateVendor(ids, false);
-                //$('#activate-selected-vendor-form').submit();
-                // updateTable('#vendors-grid');
+                $('#activate-selected-vendor-form #selectedIds').val(ids);
+                $('#activate-selected-vendor-form #isSendEmail').val('false')
+                //activateVendor(ids, true);
+                $('#activate-selected-vendor-form').submit();
             }
             return false;
         });
@@ -239,8 +239,6 @@
                 $('#activate-selected-vendor-form #isSendEmail').val('true')
                 //activateVendor(ids, true);
                 $('#activate-selected-vendor-form').submit();
-                
-                //updateTable('#vendors-grid');
             }
             return false;
         });
@@ -248,7 +246,7 @@
 
     $('#activate-selected-vendor-form').on('submit', function (e) {
         e.preventDefault();
-        console.log($(this).serialize());
+
         var postData = $(this).serialize();
         addAntiForgeryToken(postData);
         $.ajax({
@@ -257,11 +255,11 @@
             type: 'POST',
             data: postData,
             success: function (data, textStatus, jqXHR) {
-                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+                toastr.success('@T("Plugins.Misc.NopHunter.VendorRegistration.Common.UpdateSuccess")', '@T("Plugins.Misc.NopHunter.VendorRegistration.Common.Success")');
                 updateTable('#vendors-grid');
             },
             error: function (xhr, status, error) {
-                //alert("Error: " + error);
+                toastr.error('@T("Plugins.Misc.NopHunter.VendorRegistration.Common.ErrorMessage")', '@T("Plugins.Misc.NopHunter.VendorRegistration.Common.Error")');
             }
         });
     });

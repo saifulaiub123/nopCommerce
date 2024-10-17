@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Localization;
-using Nop.Data;
+using Nop.Core.Domain.Vendors;
 using Nop.Plugin.Misc.NopHunter.VendorRegistration.Factory;
 using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
-using Nop.Plugin.Misc.VendorRegistration.Domain;
+using Nop.Plugin.Misc.NopHunter.VendorRegistration.Services;
 using Nop.Plugin.Misc.VendorRegistration.Models;
-using Nop.Plugin.Misc.VendorRegistration.Services;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
+using Nop.Services.Logging;
 using Nop.Services.Messages;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Factories;
-using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
-using Nop.Web.Areas.Admin.Models.Localization;
-using Nop.Web.Areas.Admin.Models.Vendors;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
-using Nop.Web.Framework.Mvc.ModelBinding;
-using Nop.Web.Framework.Validators;
 
 namespace Nop.Plugin.Misc.VendorRegistration.Controllers;
 
@@ -43,7 +33,13 @@ public class VendorRegistrationAdminController : BasePluginController
     protected readonly IVendorModelFactory _vendorModelFactory;
 
     protected readonly IVendorModelFactoryCustom _vendorModelFactoryCustom;
+    protected readonly IVendorServiceCustom _vendorServiceCustom;
+    protected readonly ICustomerActivityService _customerActivityService;
+    protected readonly IVendorWorkflowMessageService _vendorWorkflowMessageService;
+    protected readonly LocalizationSettings _localizationSettings;
 
+
+    private static readonly char[] _separator = [','];
 
     #endregion
 
@@ -57,7 +53,11 @@ public class VendorRegistrationAdminController : BasePluginController
         IStoreContext storeContext,
         IVendorModelFactory vendorModelFactory,
 
-        IVendorModelFactoryCustom vendorModelFactoryCustom)
+        IVendorModelFactoryCustom vendorModelFactoryCustom,
+        IVendorServiceCustom vendorServiceCustom,
+        ICustomerActivityService customerActivityService,
+        IVendorWorkflowMessageService vendorWorkflowMessageService,
+        LocalizationSettings localizationSettings)
     {
         _localizationService = localizationService;
         _notificationService = notificationService;
@@ -67,6 +67,10 @@ public class VendorRegistrationAdminController : BasePluginController
         _vendorModelFactory = vendorModelFactory;
 
         _vendorModelFactoryCustom = vendorModelFactoryCustom;
+        _vendorServiceCustom = vendorServiceCustom;
+        _customerActivityService = customerActivityService;
+        _vendorWorkflowMessageService = vendorWorkflowMessageService;
+        _localizationSettings = localizationSettings;
     }
 
     #endregion
@@ -137,35 +141,26 @@ public class VendorRegistrationAdminController : BasePluginController
 
     [HttpPost]
     //[CheckPermission(StandardPermission.Customers.VENDORS_CREATE_EDIT_DELETE)]
-    public virtual async Task<IActionResult> ActivateVendor(string SelectedIds, bool IsSendEmail)
+    public virtual async Task<IActionResult> ActivateVendor(string selectedIds, bool isSendEmail)
     {
-        //var orders = new List<Vendor>();
-        //if (selectedIds != null)
-        //{
-        //    var ids = selectedIds
-        //        .Split(_separator, StringSplitOptions.RemoveEmptyEntries)
-        //        .Select(x => Convert.ToInt32(x))
-        //        .ToArray();
-        //    orders.AddRange(await (await _orderService.GetOrdersByIdsAsync(ids))
-        //        .WhereAwait(HasAccessToOrderAsync).ToListAsync());
-        //}
-
-        //try
-        //{
-        //    var xml = await _exportManager.ExportOrdersToXmlAsync(orders);
-        //    return File(Encoding.UTF8.GetBytes(xml), MimeTypes.ApplicationXml, "orders.xml");
-        //}
-        //catch (Exception exc)
-        //{
-        //    await _notificationService.ErrorNotificationAsync(exc);
-        //    return RedirectToAction("List");
-        //}
-        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Customers.Customers.SendEmail.Queued"));
-
-        return Json(new
+        var vendors = new List<Vendor>();
+        if (selectedIds != null)
         {
-            Success = true
-        });
+            var ids = selectedIds
+                .Split(_separator, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => Convert.ToInt32(x))
+                .ToList();
+            vendors.AddRange(await _vendorServiceCustom.GetAllVendorsByIds(ids));
+        }
+        vendors.ForEach(c => c.Active = true);
+        await _vendorServiceCustom.UpdateVendors(vendors);
+        await _customerActivityService.InsertActivityAsync("EditVendor", string.Format(await _localizationService.GetResourceAsync("ActivityLog.EditVendor"), selectedIds));
+
+        if(isSendEmail)
+        {
+            await _vendorWorkflowMessageService.SendVendorAccountActivationNotificationToVendors(vendors, _localizationSettings.DefaultAdminLanguageId);
+        }
+        return Json(new { Success = true });
     }
     #endregion
 }

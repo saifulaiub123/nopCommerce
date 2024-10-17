@@ -139,9 +139,6 @@ public class VendorWorkflowMessageService : WorkflowMessageService, IVendorWorkf
             var tokens = new List<Token>(commonTokens);
             await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
 
-            //event notification
-            await _eventPublisher.MessageTokensAddedAsync(messageTemplate, tokens);
-
             var toEmail = vendor.Email;
             var toName = $"{customer.FirstName} {customer.LastName}";
 
@@ -152,5 +149,33 @@ public class VendorWorkflowMessageService : WorkflowMessageService, IVendorWorkf
 
             return await SendNotificationAsync(messageTemplate, emailAccount, languageId, tokens, toEmail, toName, replyToEmailAddress: string.Empty, replyToName: string.Empty);
         }).ToListAsync();
+    }
+    public async Task SendVendorAccountActivationNotificationToVendors(List<Vendor> vendors, int languageId)
+    {
+        ArgumentNullException.ThrowIfNull(vendors);
+
+        var store = await _storeContext.GetCurrentStoreAsync();
+        languageId = await EnsureLanguageIsActiveAsync(languageId, store.Id);
+
+        var messageTemplate = (await GetActiveMessageTemplatesAsync(VendorRegistrationDefaults.VENDOR_ACCOUNT_ACTIVATION_NOTIFICATION, store.Id)).FirstOrDefault();
+        if (messageTemplate == null)
+        {
+            return;
+        }
+
+        foreach (var vendor in vendors)
+        {
+            var commonTokens = new List<Token>();
+            await _messageTokenProvider.AddVendorTokensAsync(commonTokens, vendor);
+
+            var emailAccount = await GetEmailAccountOfMessageTemplateAsync(messageTemplate, languageId);
+
+            var tokens = new List<Token>(commonTokens);
+            await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
+
+            var toEmail = vendor.Email;
+
+            await SendNotificationAsync(messageTemplate, emailAccount, languageId, tokens, toEmail, string.Empty, replyToEmailAddress: string.Empty, replyToName: string.Empty);
+        }
     }
 }

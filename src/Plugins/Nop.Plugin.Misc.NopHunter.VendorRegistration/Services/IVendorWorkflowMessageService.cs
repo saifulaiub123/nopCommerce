@@ -11,4 +11,5 @@ namespace Nop.Plugin.Misc.NopHunter.VendorRegistration.Services;
 public interface IVendorWorkflowMessageService
 {
     Task<IList<int>> SendVendorAccountCreationNotificationToVendor(Customer customer, Vendor vendor, int languageId);
+    Task SendVendorAccountActivationNotificationToVendors(List<Vendor> vendors, int languageId);
 }

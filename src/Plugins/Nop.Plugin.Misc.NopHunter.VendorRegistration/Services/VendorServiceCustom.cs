@@ -28,6 +28,8 @@ public class VendorServiceCustom: IVendorServiceCustom
 
     #endregion
 
+    #region Method
+
     public virtual async Task<IPagedList<Vendor>> GetAllVendorsAsync(VendorSearchModelCustom vendorSearchModel)
     {
         var vendors = await _vendorRepository.GetAllPagedAsync(query =>
@@ -44,8 +46,19 @@ public class VendorServiceCustom: IVendorServiceCustom
             query = query.OrderBy(v => v.DisplayOrder).ThenBy(v => v.Name).ThenBy(v => v.Email);
 
             return query;
-        }, vendorSearchModel.Page - 1, vendorSearchModel.PageSize);
+        }, vendorSearchModel.Page - 1, vendorSearchModel.PageSize, false, false);
 
         return vendors;
     }
+    public virtual async Task<IList<Vendor>> GetAllVendorsByIds(List<int> ids)
+    {
+        var vendors = await _vendorRepository.GetByIdsAsync(ids, null, false);
+        return vendors;
+    }
+    public async Task UpdateVendors(List<Vendor> vendors)
+    {
+        await _vendorRepository.UpdateAsync(vendors, false);
+    }
+
+    #endregion
 }
