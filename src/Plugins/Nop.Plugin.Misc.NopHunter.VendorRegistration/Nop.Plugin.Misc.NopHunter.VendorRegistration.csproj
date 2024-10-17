@@ -102,7 +102,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Content\Css\toastr.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Content\Scripts\registration-page.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Scripts\toastr.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Views\RegistrationPageView.cshtml">
@@ -111,6 +117,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Content\Css\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
 

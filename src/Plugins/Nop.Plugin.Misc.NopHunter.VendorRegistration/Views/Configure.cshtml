@@ -8,8 +8,10 @@
     ViewBag.PageTitle = T("Admin.Vendors").Text;
     //active menu item (system name)
     //NopHtml.SetActiveMenuItemSystemName("Vendors");
+    NopHtml.AddCssFileParts("~/Plugins/Misc.NopHunter.VendorRegistration/Content/Css/toastr.min.css", excludeFromBundle: false);
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopHunter.VendorRegistration/Content/Scripts/toastr.min.js", excludeFromBundle: true);   
 }
-
+@* #toast-container>div *@
 @{
     const string hideSearchBlockAttributeName = "VendorsPage.HideSearchBlock";
     var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
@@ -30,10 +32,10 @@
                         <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
                             <div class="search-text">@T("Admin.Common.Search")</div>
                             <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
-                            <div class="card-tools icon-collapse">
+                            @* <div class="card-tools icon-collapse">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                            </div>
-                            @* <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div> *@
+                            </div> *@
+                            <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
                         </div>
                         @* <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
                             <div class="search-text">@T("Admin.Common.Search")</div>
@@ -202,8 +204,8 @@
 </section>
 
 <form asp-controller="VendorRegistrationAdmin" asp-action="ActivateVendor" method="post" id="activate-selected-vendor-form">
-    <input type="hidden" id="selectedIds" name="selectedIds" value="" />
-    <input type="checkbox" id="isSendEmail" name="isSendEmail" value="false" />
+    <input type="hidden" id="selectedIds" name="SelectedIds" value="" />
+    <input type="hidden" id="isSendEmail" name="IsSendEmail" value="false"/>
 </form>
 
 <script>
@@ -211,15 +213,15 @@
         $('#activate-selected').on('click',function (e) {
             e.preventDefault();
             var ids = selectedIds.join(",");
-            alert(ids);
             if (!ids) {
                 $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
                 $("#activatedSelected").trigger("click");
             }
             else {
-                $('#activate-selected-vendor-form #selectedIds').val(ids);
-                $('#activate-selected-vendor-form').submit();
-                updateTable('#vendors-grid');
+                //$('#activate-selected-vendor-form #selectedIds').val(ids);
+                //activateVendor(ids, false);
+                //$('#activate-selected-vendor-form').submit();
+                // updateTable('#vendors-grid');
             }
             return false;
         });
@@ -227,7 +229,6 @@
         $('#activate-selected-send-email').on('click',function (e) {
             e.preventDefault();
             var ids = selectedIds.join(",");
-            alert(ids);
 
             if (!ids) {
                 $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
@@ -235,12 +236,56 @@
             }
             else {
                 $('#activate-selected-vendor-form #selectedIds').val(ids);
-                $('#activate-selected-vendor-form #isSendEmail').prop('checked', true);
+                $('#activate-selected-vendor-form #isSendEmail').val('true')
+                //activateVendor(ids, true);
                 $('#activate-selected-vendor-form').submit();
-                updateTable('#vendors-grid');
+                
+                //updateTable('#vendors-grid');
             }
             return false;
         });
     });
+
+    $('#activate-selected-vendor-form').on('submit', function (e) {
+        e.preventDefault();
+        console.log($(this).serialize());
+        var postData = $(this).serialize();
+        addAntiForgeryToken(postData);
+        $.ajax({
+            cache: false,
+            url: "@(Url.Action("ActivateVendor", "VendorRegistrationAdmin"))",
+            type: 'POST',
+            data: postData,
+            success: function (data, textStatus, jqXHR) {
+                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+                updateTable('#vendors-grid');
+            },
+            error: function (xhr, status, error) {
+                //alert("Error: " + error);
+            }
+        });
+    });
+    function activateVendor(ids, isSendEmail)
+    {
+        var postData = {
+            SelectedIds: ids,
+            IsSendEmail: isSendEmail
+        };
+        addAntiForgeryToken(postData);
+        $.ajax({
+            cache: false,
+            url: "@(Url.Action("ActivateVendor", "VendorRegistrationAdmin"))",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(postData),
+            success: function (response) {
+                alert("Success")
+                updateTable('#vendors-grid');
+            },
+            error: function (xhr, status, error) {
+                alert("Error: " + error);
+            }
+        });
+    }
 </script>
 <nop-alert asp-alert-id="activatedSelected" />

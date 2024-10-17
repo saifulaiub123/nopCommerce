@@ -136,8 +136,8 @@ public class VendorRegistrationAdminController : BasePluginController
 
 
     [HttpPost]
-    [CheckPermission(StandardPermission.Customers.VENDORS_CREATE_EDIT_DELETE)]
-    public virtual async Task<IActionResult> ActivateVendor(string selectedIds,bool isSendEmail)
+    //[CheckPermission(StandardPermission.Customers.VENDORS_CREATE_EDIT_DELETE)]
+    public virtual async Task<IActionResult> ActivateVendor(string SelectedIds, bool IsSendEmail)
     {
         //var orders = new List<Vendor>();
         //if (selectedIds != null)
@@ -160,7 +160,12 @@ public class VendorRegistrationAdminController : BasePluginController
         //    await _notificationService.ErrorNotificationAsync(exc);
         //    return RedirectToAction("List");
         //}
-        return Ok();
+        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Customers.Customers.SendEmail.Queued"));
+
+        return Json(new
+        {
+            Success = true
+        });
     }
     #endregion
 }
