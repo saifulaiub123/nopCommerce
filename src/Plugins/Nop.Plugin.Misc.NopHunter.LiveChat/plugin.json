@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Live Chat by nopHunter",
+  "SystemName": "Misc.NopHunter.LiveChat",
+  "Version": "4.70.3",
+  "SupportedVersions": [ "4.70" ],
+  "Author": "nopHunter",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.NopHunter.LiveChat.dll",
+  "Description": "This plugin allows to integrate with Omnisend - email and omnichannel marketing platform"
+}
