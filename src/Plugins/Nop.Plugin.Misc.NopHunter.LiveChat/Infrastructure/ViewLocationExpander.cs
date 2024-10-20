@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace Nop.Plugin.Misc.Omnisend.Infrastructure;
+namespace Nop.Plugin.Misc.NopHunter.LiveChat.Infrastructure;
 
 /// <summary>
 /// Specifies the contracts for a view location expander that is used by Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine instances to determine search paths for a view.
@@ -28,7 +28,7 @@ public class ViewLocationExpander : IViewLocationExpander
     public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context,
         IEnumerable<string> viewLocations)
     {
-        viewLocations = new[] { $"/Plugins/Misc.Omnisend/Views/{context.ViewName}.cshtml" }
+        viewLocations = new[] { $"/Plugins/Misc.NopHunter.LiveChat/Views/{context.ViewName}.cshtml" }
             .Concat(viewLocations);
 
         return viewLocations;

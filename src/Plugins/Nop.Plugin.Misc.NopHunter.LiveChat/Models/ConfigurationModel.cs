@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Nop.Plugin.Misc.Omnisend.DTO;
-using Nop.Web.Framework.Models;
+﻿using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
-namespace Nop.Plugin.Misc.Omnisend.Models;
+namespace Nop.Plugin.Misc.NopHunter.LiveChat.Models;
 
 /// <summary>
 /// Represents configuration model
@@ -12,20 +10,7 @@ public record ConfigurationModel : BaseNopModel
 {
     #region Properties
 
-    [NopResourceDisplayName("Plugins.Misc.Omnisend.Fields.ApiKey")]
-    [DataType(DataType.Password)]
-    public string ApiKey { get; set; }
-
-    [NopResourceDisplayName("Plugins.Misc.Omnisend.Fields.UseTracking")]
-    public bool UseTracking { get; set; }
-
-    public bool BlockSyncContacts { get; set; }
-
-    public bool BlockSyncProducts { get; set; }
-
-    public bool BlockSyncOrders { get; set; }
-
-    public IList<BatchResponse> Batches { get; set; } = new List<BatchResponse>();
-
+    [NopResourceDisplayName("Plugins.Misc.NopHunter.LiveChat.Fields.Script")]
+    public string Script { get; set; }
     #endregion
 }

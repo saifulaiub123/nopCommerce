@@ -25,7 +25,7 @@ public class PluginNopStartup : INopStartup
             options.ViewLocationExpanders.Add(new ViewLocationExpander());
         });
 
-        services.AddHttpClient<OmnisendHttpClient>().WithProxy();
+        //services.AddHttpClient<OmnisendHttpClient>().WithProxy();
         services.AddScoped<OmnisendService>();
         services.AddScoped<OmnisendEventsService>();
         services.AddScoped<OmnisendCustomerService>();
