@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Routing;
 using Nop.Web.Framework.Mvc.Routing;
 using Nop.Web.Framework;
 
-namespace Nop.Plugin.Misc.Omnisend.Infrastructure;
+namespace Nop.Plugin.Misc.NopHunter.LiveChat.Infrastructure;
 
 /// <summary>
 /// Represents plugin route provider
@@ -16,13 +16,9 @@ public class RouteProvider : IRouteProvider
     /// <param name="endpointRouteBuilder">Route builder</param>
     public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapControllerRoute(name: OmnisendDefaults.ConfigurationRouteName,
-            pattern: "Admin/Omnisend/Configure",
-            defaults: new { controller = "OmnisendAdmin", action = "Configure", area = AreaNames.ADMIN });
-
-        endpointRouteBuilder.MapControllerRoute(name: OmnisendDefaults.AbandonedCheckoutRouteName,
-            pattern: "Omnisend/AbandonedCheckout/{cartId}",
-            defaults: new { controller = "Omnisend", action = "AbandonedCheckout" });
+        endpointRouteBuilder.MapControllerRoute(name: LiveChatDefaults.ConfigurationRouteName,
+            pattern: "Admin/LiveChat/Configure",
+            defaults: new { controller = "LiveChatAdmin", action = "Configure", area = AreaNames.ADMIN });
     }
 
     /// <summary>

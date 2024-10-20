@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
-using Nop.Plugin.Misc.Omnisend.Services;
-using Nop.Web.Framework.Infrastructure.Extensions;
 
-namespace Nop.Plugin.Misc.Omnisend.Infrastructure;
+namespace Nop.Plugin.Misc.NopHunter.LiveChat.Infrastructure;
 
 /// <summary>
 /// Represents object for the configuring Omnisend plugin on application startup
@@ -24,12 +22,6 @@ public class PluginNopStartup : INopStartup
         {
             options.ViewLocationExpanders.Add(new ViewLocationExpander());
         });
-
-        services.AddHttpClient<OmnisendHttpClient>().WithProxy();
-        services.AddScoped<OmnisendService>();
-        services.AddScoped<OmnisendEventsService>();
-        services.AddScoped<OmnisendCustomerService>();
-        services.AddScoped<OmnisendHelper>();
     }
 
     /// <summary>
