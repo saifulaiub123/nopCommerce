@@ -7,7 +7,7 @@
     <Authors>Nop Hunter, Ltd</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nopSolutions/omnisend-plugin-for-nopcommerce</RepositoryUrl>
+    <RepositoryUrl></RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <OutputPath>..\..\Presentation\Nop.Web\Plugins\Misc.NopHunter.LiveChat</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
