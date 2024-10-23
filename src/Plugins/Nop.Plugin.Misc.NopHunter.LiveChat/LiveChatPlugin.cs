@@ -109,7 +109,7 @@ public class LiveChatPlugin : BasePlugin, IMiscPlugin, IWidgetPlugin
 
         await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
         {
-            ["Plugins.Misc.NopHunter.LiveChat.Script"] = "Live chat script",
+            ["plugins.Misc.Nophunter.Livechat.Fields.Script"] = "Live chat script",
             ["Plugins.Misc.NopHunter.Common.UpdateSuccess"] = "Successfully updated"
         });
 

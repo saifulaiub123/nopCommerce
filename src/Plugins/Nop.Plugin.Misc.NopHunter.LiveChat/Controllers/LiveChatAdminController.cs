@@ -38,8 +38,6 @@ public class LiveChatAdminController : BasePluginController
 
     #endregion
 
-    #region Utilities
-    #endregion
 
     #region Methods
 
@@ -50,7 +48,7 @@ public class LiveChatAdminController : BasePluginController
             Script = _liveChatSettings.Script,
         };
 
-        return View(model);
+        return View("~/Plugins/Misc.NopHunter.LiveChat/Views/Configure.cshtml", model);
     }
 
     [HttpPost, ActionName("Configure")]
