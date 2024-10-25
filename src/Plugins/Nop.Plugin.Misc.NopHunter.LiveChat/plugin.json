@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Live Chat by nopHunter",
+  "SystemName": "Misc.NopHunter.LiveChat",
+  "Version": "4.50",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "nopHunter",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.NopHunter.LiveChat.dll",
+  "Description": "This plugin allows to integrate tawk.to live chat"
+}

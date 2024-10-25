@@ -1,0 +1,39 @@
+﻿@model ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+<form asp-controller="LiveChatAdmin" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-default">
+                <div class="card-body">
+                    <p>
+                        To enable this plugin, you'll need to:<br />
+                        <br />
+                        1. Please <a href="https://dashboard.tawk.to/login" target="_blank">sign up/signin</a> on tawk.to <br />
+                        2. After login follow the steps and You will get the script <br />
+                        3. Paste and save the script in the below field<br />
+                    </p>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <nop-label asp-for="Script" />
+                        </div>
+                        <div class="col-md-9">
+                            <nop-textarea asp-for="Script" asp-required="" />
+                            <span asp-validation-for="Script"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" name="save" class="btn btn-primary float-right">
+                                @T("Admin.Common.Save")
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
