@@ -3,8 +3,23 @@
 <div id="flyout-cart" class="flyout-main-wrapper">
     <div class="shopping-cart-link">
         <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-            <span class="cart-label">@T("ShoppingCart")</span>
-            <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.TotalProducts) @T("admin.currentcarts.totalitems")</span>
+            @* <span class="cart-label">@T("ShoppingCart")</span> *@
+            @* <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.TotalProducts)</span> *@
+            <span class="number"><span class="n-item cart-qty">@Model.TotalProducts</span></span>
+            @* color: #000;
+            top: -3px;
+            right: calc(50% - 28px);
+            position: absolute;
+            display: block;
+            top: 12px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            background: #f7ca18;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600; *@
         </a>
     </div>
     <div class="flyout-cart-wrapper" id="flyout-cart-wrapper">
@@ -16,7 +31,15 @@
                 }
                 else
                 {
-                    @Html.Raw(string.Format(T("ShoppingCart.Mini.ItemsText").Text, $"<a href=\"{Url.RouteUrl("ShoppingCart")}\">{string.Format(T("ShoppingCart.Mini.Items").Text, Model.TotalProducts)}</a>"))
+                    //@Html.Raw(string.Format(T("ShoppingCart.Mini.ItemsText").Text, $"<a href=\"{Url.RouteUrl("ShoppingCart")}\">{string.Format(T("ShoppingCart.Mini.Items").Text, Model.TotalProducts)}</a>"))
+                    <a href="@(Url.RouteUrl("ShoppingCart"))" class="basket dropdown-toggle" title="Your Cart">
+
+                        <i class="demo-icon icon-cart"></i>
+
+
+                        <span class="number"><span class="n-item">@Model.TotalProducts</span></span>
+
+                    </a>
                 }
             </div>
             @if (Model.TotalProducts > 0)

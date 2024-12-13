@@ -43,7 +43,15 @@ input[type=checkbox], input[type=radio] {margin: 4px 2px 0 0;}
 
 /* HEADER SECTION STYLE */
 .header-logo{text-align:center;}
-.header-upper{background:#f9f9f9;box-shadow:0px 0px 3px #999;-webkit-box-shadow: 0px 0px 3px #999;-moz-box-shadow: 0px 0px 3px #999;height:45px;border-bottom:1px solid #ddd;}
+.header-upper{
+    background:#f9f9f9;
+    /*box-shadow:0px 0px 3px #999;*/
+    /*-webkit-box-shadow: 0px 0px 3px #999;
+    -moz-box-shadow: 0px 0px 3px #999;*/
+    height:45px;
+    /*border-bottom:1px solid #ddd;*/
+
+}
 .currency-selector,.language-selector,.tax-display-type-selector{float:left;margin:10px 6px 0px 0px;}
 .language-selector .language-list li {display: inline-block;padding: 0 5px;}
 .header-selectors-wrapper select {
@@ -96,13 +104,45 @@ input[type=checkbox], input[type=radio] {margin: 4px 2px 0 0;}
 
 
 /* FLYOUT CART STYLE */
-.flyout-main-wrapper .flyout-cart-wrapper{position:absolute;top:50px;left:75px;z-index: 999999;width:301px;box-shadow:0 0 2px rgba(0,0,0,0.25);-webkit-box-shadow:0 0 2px rgba(0,0,0,0.25);-moz-box-shadow:0 0 2px rgba(0,0,0,0.25);background-color: #fff;border:1px solid #ddd;border-radius:0px;opacity:0;visibility:hidden;}
+.flyout-main-wrapper .flyout-cart-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 75px;
+  z-index: 999999;
+  width: 301px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 0 2px rgba(0,0,0,0.25);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  opacity: 0;
+  visibility: hidden;
+}
 .flyout-main-wrapper{float:right;margin:20px 15px 0px 0px;}
 .flyout-main-wrapper.shopping-cart-link{float:right;}
-.flyout-main-wrapper .shopping-cart-link .ico-cart{background:url(../images/cart-icon.png) no-repeat 0px 0px;float:right;height:20px;padding-left:30px;text-decoration:none;}
-.flyout-main-wrapper .shopping-cart-link .ico-cart:hover{background:url(../images/cart-icon.png) no-repeat 0px -28px;}
+.flyout-main-wrapper .shopping-cart-link .ico-cart{background:url(../images/shopping-cart-icon-1.png) no-repeat 0px 0px;float:right;height:30px;padding-left:30px;text-decoration:none;}
+  /*.flyout-main-wrapper .shopping-cart-link .ico-cart:hover {
+    background: url(../images/shopping-cart-icon-1.png) no-repeat 0px -28px;
+  }*/
 .flyout-main-wrapper .shopping-cart-link .cart-label{color:var(--grey-black);}
-.flyout-main-wrapper .shopping-cart-link .cart-qty{color:var(--red);}
+  .flyout-main-wrapper .shopping-cart-link .cart-qty {
+    color: #000;
+    top: -3px;
+    right: calc(50% - 28px);
+    position: absolute;
+    display: block;
+    top: 12px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    background: #f7ca18;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 50%;
+  }
 .flyout-main-wrapper .flyout-cart-wrapper::before {background:url(../images/flyout-arrow-top.png) no-repeat center center;content: " ";height: 14px;left: 70%;position: absolute;top:-14px;width:26px;}
 .flyout-cart-wrapper.active{opacity:1;visibility:visible;}
 .header-lower .flyout-cart-wrapper .mini-shopping-cart .count a{float:none;border-right:0;}
@@ -385,7 +425,7 @@ input[type=checkbox], input[type=radio] {margin: 4px 2px 0 0;}
     padding-top: 100%;
 }
 .item-box .thumbnail .wishlist-compare-wrapper{position: absolute;text-align: center;width: 100%;z-index: 999;opacity:0;top:80%;transition:all 500ms ease-in-out 0s;-webkit-transition:all 500ms ease-in-out 0s;-moz-transition:all 500ms ease-in-out 0s;-o-transition:all 500ms ease-in-out 0s;}
-.item-box .thumbnail:hover .picture .wishlist-compare-wrapper{top:40%;opacity:1;transition:all 500ms ease-in-out 0s;-webkit-transition:all 500ms ease-in-out 0s;-moz-transition:all 500ms ease-in-out 0s;-o-transition:all 500ms ease-in-out 0s;}
+/*.item-box .thumbnail:hover .picture .wishlist-compare-wrapper{top:40%;opacity:1;transition:all 500ms ease-in-out 0s;-webkit-transition:all 500ms ease-in-out 0s;-moz-transition:all 500ms ease-in-out 0s;-o-transition:all 500ms ease-in-out 0s;}*/
 
 
 

@@ -99,10 +99,28 @@ input[type=checkbox], input[type=radio] {margin: 4px 0 0 2px;}
 .flyout-main-wrapper .flyout-cart-wrapper{position:absolute;top:50px;right:75px;z-index: 999999;width:301px;box-shadow:0 0 2px rgba(0,0,0,0.25);-webkit-box-shadow:0 0 2px rgba(0,0,0,0.25);-moz-box-shadow:0 0 2px rgba(0,0,0,0.25);background-color: #fff;border:1px solid #ddd;border-radius:0px;opacity:0;visibility:hidden;}
 .flyout-main-wrapper{float:left;margin:20px 0px 0px 15px;}
 .flyout-main-wrapper.shopping-cart-link{float:left;}
-.flyout-main-wrapper .shopping-cart-link .ico-cart{background:url(../images/cart-icon.png) no-repeat right 0 top 0;float:left;height:20px;padding-right:30px;text-decoration:none;}
-.flyout-main-wrapper .shopping-cart-link .ico-cart:hover{background:url(../images/cart-icon.png) no-repeat right 0px top -28px;}
+.flyout-main-wrapper .shopping-cart-link .ico-cart{background:url(../images/shopping-cart-icon-1.png) no-repeat right 0 top 0;float:left;height:30px;padding-right:30px;text-decoration:none;}
+  /*.flyout-main-wrapper .shopping-cart-link .ico-cart:hover {
+    background: url(../images/shopping-cart-icon-1.png) no-repeat right 0px top -28px;
+  }*/
 .flyout-main-wrapper .shopping-cart-link .cart-label{color:var(--grey-black);}
-.flyout-main-wrapper .shopping-cart-link .cart-qty{color:var(--red);}
+.flyout-main-wrapper .shopping-cart-link .cart-qty {
+    color: #000;
+    top: -3px;
+    right: calc(50% - 28px);
+    position: absolute;
+    display: block;
+    top: 12px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    background: #f7ca18;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 50%;
+  }
 .flyout-main-wrapper .flyout-cart-wrapper::before {background:url(../images/flyout-arrow-top.png) no-repeat center center;content: " ";height: 14px;right: 70%;position: absolute;top:-14px;width:26px;}
 .flyout-cart-wrapper.active{opacity:1;visibility:visible;}
 .header-lower .flyout-cart-wrapper .mini-shopping-cart .count a{float:none;border-left:0;}
