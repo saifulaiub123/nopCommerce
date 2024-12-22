@@ -58,8 +58,6 @@ public class ProductLiveButtonAdminController : BasePluginController
     #endregion
 
     #region Methods
-
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure()
     {
         //load settings for a chosen store scope
@@ -80,7 +78,6 @@ public class ProductLiveButtonAdminController : BasePluginController
     }
 
     [HttpPost]
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure(ConfigurationModel model)
     {
         //load settings for a chosen store scope
