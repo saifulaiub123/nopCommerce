@@ -28,7 +28,6 @@ public class LiveButtonController : BasePluginController
 
     #region Methods
 
-    [CheckPermission(StandardPermission.Configuration.MANAGE_PLUGINS)]
     public virtual async Task<IActionResult> Configure()
     {
         return View("~/Plugins/Misc.ReplaceHomePage/Views/Configure/Configure.cshtml");

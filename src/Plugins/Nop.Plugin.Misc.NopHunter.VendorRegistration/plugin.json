@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Simple Vendor Registration",
+  "SystemName": "Misc.NopHunter.VendorRegistration",
+  "Version": "4.80.0",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "nop-hunter team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.NopHunter.VendorRegistration.dll",
+  "Description": "Hassle free vendor registation. Don't need to do anyting from admin. Just need to approve the vendor.After creating account vendor will get email automatically."
+}
