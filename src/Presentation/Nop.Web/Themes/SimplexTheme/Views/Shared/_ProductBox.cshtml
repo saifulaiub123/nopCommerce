@@ -132,6 +132,7 @@
                             addToCartText = T("ShoppingCart.PreOrder").Text;
                         }
                         <button type="button" class="btn btn-primary product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@(addToCartText)</button>
+                        <button type="button" class="btn btn-primary product-box-demo-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;"><span class="btn-label"><i class="fa fa-eye" aria-hidden="true"></i></span> Demo</button>
                     }
                 </div>
                 @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBoxAddinfoAfter, additionalData = Model })
