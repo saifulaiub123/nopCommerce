@@ -77,7 +77,6 @@ public class VendorRegistrationAdminController : BasePluginController
 
     #region Methods
 
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure()
     {
         //load settings for a chosen store scope
@@ -91,7 +90,6 @@ public class VendorRegistrationAdminController : BasePluginController
     }
 
     [HttpPost]
-    [CheckPermission(StandardPermission.Configuration.MANAGE_WIDGETS)]
     public async Task<IActionResult> Configure(ConfigurationModel model)
     {
         //load settings for a chosen store scope
@@ -118,8 +116,6 @@ public class VendorRegistrationAdminController : BasePluginController
         return await Configure();
     }
 
-
-    [CheckPermission(StandardPermission.Customers.VENDORS_VIEW)]
     public virtual async Task<IActionResult> List()
     {
         //prepare model
@@ -129,7 +125,6 @@ public class VendorRegistrationAdminController : BasePluginController
     }
 
     [HttpPost]
-    [CheckPermission(StandardPermission.Customers.VENDORS_VIEW)]
     public virtual async Task<IActionResult> List(VendorSearchModelCustom searchModel)
     {
         //prepare model

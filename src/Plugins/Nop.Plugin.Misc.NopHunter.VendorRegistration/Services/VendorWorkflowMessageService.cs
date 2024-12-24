@@ -137,7 +137,8 @@ public class VendorWorkflowMessageService : WorkflowMessageService, IVendorWorkf
             var emailAccount = await GetEmailAccountOfMessageTemplateAsync(messageTemplate, languageId);
 
             var tokens = new List<Token>(commonTokens);
-            await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
+            //await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
+            await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount);
 
             var toEmail = vendor.Email;
             var toName = $"{customer.FirstName} {customer.LastName}";
@@ -171,7 +172,8 @@ public class VendorWorkflowMessageService : WorkflowMessageService, IVendorWorkf
             var emailAccount = await GetEmailAccountOfMessageTemplateAsync(messageTemplate, languageId);
 
             var tokens = new List<Token>(commonTokens);
-            await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
+            //await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount, languageId);
+            await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount);
 
             var toEmail = vendor.Email;
 
