@@ -1,6 +1,6 @@
 ﻿@model VendorSearchModelCustom
-@using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
-@using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models.DataTables
+@using Nop.Plugin.Misc.NopSolution.ProductTab.Models;
+@using Nop.Plugin.Misc.NopSolution.ProductTab.Models.DataTables
 
 @{
     Layout = "_ConfigurePlugin";
@@ -8,8 +8,8 @@
     ViewBag.PageTitle = T("Admin.Vendors").Text;
     //active menu item (system name)
     //NopHtml.SetActiveMenuItemSystemName("Vendors");
-    NopHtml.AddCssFileParts("~/Plugins/Misc.NopHunter.VendorRegistration/Content/Css/toastr.min.css", excludeFromBundle: false);
-    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopHunter.VendorRegistration/Content/Scripts/toastr.min.js", excludeFromBundle: true);   
+    NopHtml.AddCssFileParts("~/Plugins/Misc.NopSolution.ProductTab/Content/Css/toastr.min.css", excludeFromBundle: false);
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopSolution.ProductTab/Content/Scripts/toastr.min.js", excludeFromBundle: true);   
 }
 @* #toast-container>div *@
 @{
@@ -108,16 +108,16 @@
                                 </div>
                                 <button type="button" name="importexcel" class="btn bg-olive float-right mr-1" id="activate-selected-send-email">
                                     <i class="fas fa-paper-plane"></i>
-                                    @T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail")
+                                    @T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.ActivateAndSendEmail")
                                 </button>
                                 <button type="button" name="importexcel" class="btn bg-olive float-right mr-1" id="activate-selected">
                                     <i class="fas fa-check-square"></i>
-                                    @T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate")
+                                    @T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.Activate")
                                 </button>
                             </div>
                         </div>
 
-                        @await Html.PartialAsync("~/Plugins/Misc.NopHunter.VendorRegistration/Areas/Admin/Views/Shared/TableCustom.cshtml", new DataTablesModel
+                        @await Html.PartialAsync("~/Plugins/Misc.NopSolution.ProductTab/Areas/Admin/Views/Shared/TableCustom.cshtml", new DataTablesModel
                         {
                            Name = "vendors-grid",
                            UrlRead = new DataUrl("List", "VendorRegistrationAdmin", null),
@@ -159,10 +159,10 @@
                                 },
                                 new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
                                 {
-                                    Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text,
+                                    Title = T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.Activate").Text,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
-                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.Activate").Text)
+                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.Activate").Text)
                                     {
                                         OnClickFunctionName =  "activateVendor",
                                         ButtonDisable = new ButtonDisable()
@@ -174,10 +174,10 @@
                                 },
                                 new ColumnProperty(nameof(Nop.Web.Areas.Admin.Models.Vendors.VendorModel.Id))
                                 {
-                                    Title = T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text,
+                                    Title = T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.ActivateAndSendEmail").Text,
                                     Width = "100",
                                     ClassName =  NopColumnClassDefaults.CenterAll,
-                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.List.Button.ActivateAndSendEmail").Text)
+                                    Render = new RenderButtonCustomVR(NopButtonClassDefaults.Olive, T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.List.Button.ActivateAndSendEmail").Text)
                                     {
                                         OnClickFunctionName =  "activateVendorAndSendMail",
                                         ButtonDisable = new ButtonDisable()
@@ -214,7 +214,7 @@
             e.preventDefault();
             var ids = selectedIds.join(",");
             if (!ids) {
-                $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
+                $('#activatedSelected-info').text("@T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.NoVendorSelected")");
                 $("#activatedSelected").trigger("click");
             }
             else {
@@ -231,7 +231,7 @@
             var ids = selectedIds.join(",");
 
             if (!ids) {
-                $('#activatedSelected-info').text("@T("Plugins.Misc.NopHunter.VendorRegistration.Admin.Vendors.NoVendorSelected")");
+                $('#activatedSelected-info').text("@T("Plugins.Misc.NopSolution.ProductTab.Admin.Vendors.NoVendorSelected")");
                 $("#activatedSelected").trigger("click");
             }
             else {
@@ -255,11 +255,11 @@
             type: 'POST',
             data: postData,
             success: function (data, textStatus, jqXHR) {
-                toastr.success('@T("Plugins.Misc.NopHunter.VendorRegistration.Common.UpdateSuccess")', '@T("Plugins.Misc.NopHunter.VendorRegistration.Common.Success")');
+                toastr.success('@T("Plugins.Misc.NopSolution.ProductTab.Common.UpdateSuccess")', '@T("Plugins.Misc.NopSolution.ProductTab.Common.Success")');
                 updateTable('#vendors-grid');
             },
             error: function (xhr, status, error) {
-                toastr.error('@T("Plugins.Misc.NopHunter.VendorRegistration.Common.ErrorMessage")', '@T("Plugins.Misc.NopHunter.VendorRegistration.Common.Error")');
+                toastr.error('@T("Plugins.Misc.NopSolution.ProductTab.Common.ErrorMessage")', '@T("Plugins.Misc.NopSolution.ProductTab.Common.Error")');
             }
         });
     });

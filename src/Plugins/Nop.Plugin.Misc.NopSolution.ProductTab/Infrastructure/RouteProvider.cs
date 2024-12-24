@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Nop.Plugin.Misc.NopSolution.ProductTab;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Routing;
 using Nop.Web.Infrastructure;
@@ -18,7 +19,7 @@ public class RouteProvider : BaseRouteProvider, IRouteProvider
     public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
     {
         var lang = GetLanguageRoutePattern();
-        endpointRouteBuilder.MapControllerRoute(name: VendorRegistrationDefaults.ConfigurationRouteName,
+        endpointRouteBuilder.MapControllerRoute(name: ProductTabDefaults.ConfigurationRouteName,
             pattern: "Admin/VendorRegistration/Configure",
             defaults: new { controller = "VendorRegistrationAdmin", action = "Configure", area = AreaNames.ADMIN });
     }

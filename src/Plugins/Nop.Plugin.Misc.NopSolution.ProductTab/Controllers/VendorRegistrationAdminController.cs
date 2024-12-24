@@ -2,9 +2,8 @@
 using Nop.Core;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Vendors;
-using Nop.Plugin.Misc.NopHunter.VendorRegistration.Factory;
-using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
-using Nop.Plugin.Misc.NopHunter.VendorRegistration.Services;
+using Nop.Plugin.Misc.NopSolution.ProductTab;
+using Nop.Plugin.Misc.NopSolution.ProductTab.Models;
 using Nop.Plugin.Misc.VendorRegistration.Models;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -31,11 +30,7 @@ public class VendorRegistrationAdminController : BasePluginController
     protected readonly ISettingService _settingService;
     protected readonly IStoreContext _storeContext;
     protected readonly IVendorModelFactory _vendorModelFactory;
-
-    protected readonly IVendorModelFactoryCustom _vendorModelFactoryCustom;
-    protected readonly IVendorServiceCustom _vendorServiceCustom;
     protected readonly ICustomerActivityService _customerActivityService;
-    protected readonly IVendorWorkflowMessageService _vendorWorkflowMessageService;
     protected readonly LocalizationSettings _localizationSettings;
 
 
@@ -53,10 +48,7 @@ public class VendorRegistrationAdminController : BasePluginController
         IStoreContext storeContext,
         IVendorModelFactory vendorModelFactory,
 
-        IVendorModelFactoryCustom vendorModelFactoryCustom,
-        IVendorServiceCustom vendorServiceCustom,
         ICustomerActivityService customerActivityService,
-        IVendorWorkflowMessageService vendorWorkflowMessageService,
         LocalizationSettings localizationSettings)
     {
         _localizationService = localizationService;
@@ -66,10 +58,7 @@ public class VendorRegistrationAdminController : BasePluginController
         _storeContext = storeContext;
         _vendorModelFactory = vendorModelFactory;
 
-        _vendorModelFactoryCustom = vendorModelFactoryCustom;
-        _vendorServiceCustom = vendorServiceCustom;
         _customerActivityService = customerActivityService;
-        _vendorWorkflowMessageService = vendorWorkflowMessageService;
         _localizationSettings = localizationSettings;
     }
 
@@ -79,13 +68,11 @@ public class VendorRegistrationAdminController : BasePluginController
     public async Task<IActionResult> Configure()
     {
         //load settings for a chosen store scope
+        var model = new ProductTabModel();
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
-        var settings = await _settingService.LoadSettingAsync<VendorRegistrationSettings>(storeScope);
+        var settings = await _settingService.LoadSettingAsync<ProductTabSettings>(storeScope);
 
-        //var model = new ConfigurationModel();
-        var model = await _vendorModelFactoryCustom.PrepareVendorSearchModelAsync(new VendorSearchModelCustom());
-
-        return View("~/Plugins/Misc.NopHunter.VendorRegistration/Views/Configure.cshtml", model);
+        return View("~/Plugins/Misc.NopSolution.ProductTab/Views/Configure.cshtml", model);
     }
 
     [HttpPost]
@@ -93,7 +80,7 @@ public class VendorRegistrationAdminController : BasePluginController
     {
         //load settings for a chosen store scope
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
-        var settings = await _settingService.LoadSettingAsync<VendorRegistrationSettings>(storeScope);
+        var settings = await _settingService.LoadSettingAsync<ProductTabSettings>(storeScope);
 
         
        
@@ -113,48 +100,6 @@ public class VendorRegistrationAdminController : BasePluginController
         _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Plugins.Saved"));
 
         return await Configure();
-    }
-
-    public virtual async Task<IActionResult> List()
-    {
-        //prepare model
-        var model = await _vendorModelFactoryCustom.PrepareVendorSearchModelAsync(new VendorSearchModelCustom());
-
-        return View(model);
-    }
-
-    [HttpPost]
-    public virtual async Task<IActionResult> List(VendorSearchModelCustom searchModel)
-    {
-        //prepare model
-        var model = await _vendorModelFactoryCustom.PrepareVendorListModelAsync(searchModel);
-
-        return Json(model);
-    }
-
-
-    [HttpPost]
-    //[CheckPermission(StandardPermission.Customers.VENDORS_CREATE_EDIT_DELETE)]
-    public virtual async Task<IActionResult> ActivateVendor(string selectedIds, bool isSendEmail)
-    {
-        var vendors = new List<Vendor>();
-        if (selectedIds != null)
-        {
-            var ids = selectedIds
-                .Split(_separator, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => Convert.ToInt32(x))
-                .ToList();
-            vendors.AddRange(await _vendorServiceCustom.GetAllVendorsByIds(ids));
-        }
-        vendors.ForEach(c => c.Active = true);
-        await _vendorServiceCustom.UpdateVendors(vendors);
-        await _customerActivityService.InsertActivityAsync("EditVendor", string.Format(await _localizationService.GetResourceAsync("ActivityLog.EditVendor"), selectedIds));
-
-        if(isSendEmail)
-        {
-            await _vendorWorkflowMessageService.SendVendorAccountActivationNotificationToVendors(vendors, _localizationSettings.DefaultAdminLanguageId);
-        }
-        return Json(new { Success = true });
     }
     #endregion
 }

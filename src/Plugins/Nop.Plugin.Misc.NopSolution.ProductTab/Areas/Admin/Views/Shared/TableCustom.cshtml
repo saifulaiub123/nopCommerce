@@ -55,7 +55,7 @@
 <script asp-location="Footer">
     $(function() {
         $('#@Model.Name').DataTable({
-            @await Html.PartialAsync("~/Plugins/Misc.NopHunter.VendorRegistration/Areas/Admin/Views/Shared/_Table.DefinitionCustom.cshtml", Model)
+            @await Html.PartialAsync("~/Plugins/Misc.NopSolution.ProductTab/Areas/Admin/Views/Shared/_Table.DefinitionCustom.cshtml", Model)
         });
 
         @if (!string.IsNullOrEmpty(Model.SearchButtonId))

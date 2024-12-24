@@ -1,7 +1,7 @@
 ﻿
 using Nop.Web.Framework.Models.DataTables;
 
-namespace Nop.Plugin.Misc.NopHunter.VendorRegistration.Models.DataTables;
+namespace Nop.Plugin.Misc.NopSolution.ProductTab.Models.DataTables;
 public class RenderButtonCustomVR : RenderButtonCustom
 {
     public RenderButtonCustomVR(string className, string title) : base(className, title)

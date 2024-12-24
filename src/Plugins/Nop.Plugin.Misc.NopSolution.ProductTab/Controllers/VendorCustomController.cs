@@ -8,7 +8,7 @@ using Nop.Core;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Vendors;
-using Nop.Plugin.Misc.NopHunter.VendorRegistration.Models;
+using Nop.Plugin.Misc.NopSolution.ProductTab.Models;
 using Nop.Services.Attributes;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -23,7 +23,7 @@ using Nop.Web.Factories;
 using Nop.Web.Models.Customer;
 using Nop.Web.Models.Vendors;
 
-namespace Nop.Plugin.Misc.NopHunter.VendorRegistration.Controllers;
+namespace Nop.Plugin.Misc.NopSolution.ProductTab.Controllers;
 public class VendorCustomController : VendorController
 {
     #region Fields
@@ -117,7 +117,7 @@ public class VendorCustomController : VendorController
         if (!_vendorSettings.AllowCustomersToApplyForVendorAccount)
             return RedirectToRoute("Homepage");
 
-        var model = new VendorRegistrationCustomModel();
+        var model = new ProductTabCustomModel();
 
         var vendorModel = new ApplyVendorModel();
         model.Vendor = await _vendorModelFactory.PrepareApplyVendorModelAsync(vendorModel, true, false, null);

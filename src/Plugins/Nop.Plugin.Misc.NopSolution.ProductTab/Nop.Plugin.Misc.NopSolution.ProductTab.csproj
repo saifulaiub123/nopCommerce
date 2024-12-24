@@ -25,7 +25,6 @@
     <None Remove="logo.jpg" />
     <None Remove="plugin.json" />
     <None Remove="Views\Configure.cshtml" />
-    <None Remove="Views\TableCustom.cshtml" />
     <None Remove="Views\Vendor\ApplyVendor.cshtml" />
     <None Remove="Views\Vendor\Info.cshtml" />
     <None Remove="Views\Vendor\_CustomerForm.cshtml" />
@@ -58,11 +57,6 @@
     </Content>
     <Content Include="Views\Configure.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\TableCustom.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Views\Vendor\ApplyVendor.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -114,13 +108,11 @@
     <None Update="Views\ProductTabPublic.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Views\RegistrationPageView.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Content\Css\" />
+    <Folder Include="Services\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
 
