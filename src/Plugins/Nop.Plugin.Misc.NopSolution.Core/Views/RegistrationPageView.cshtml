@@ -1,0 +1,32 @@
+﻿@model Nop.Web.Models.Vendors.ApplyVendorModel
+@inject INopHtmlHelper NopHtml
+@* @{
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Misc.NopHunter.VendorRegistration/Content/Scripts/registration-page.js", excludeFromBundle: true);
+} *@
+
+
+<div class="vendor-registration-section">
+    <div class="fieldset">
+        <div class="title">
+            <strong>@T("Plugins.Misc.NopHunter.VendorRegistration.FieldSet.VendorDetails")</strong>
+        </div>
+        <div class="form-fields">
+            <div class="inputs">
+                <label asp-for="Name" asp-postfix=":"></label>
+                <input asp-for="Name" class="name" name="VendorName" placeholder="@T("Vendors.ApplyAccount.Name.Hint")" />
+                <nop-required />
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="inputs">
+                <label asp-for="Description" asp-postfix=":"></label>
+                <textarea asp-for="Description" name="VendorDescription" class="description"></textarea>
+            </div>
+            @* <div class="inputs">
+                <label>@T("Vendors.ApplyAccount.Picture"):</label>
+                <input name="VendorUploadedFile" type="file" accept="image/*" />
+            </div> *@
+        </div>
+    </div>
+    
+</div>

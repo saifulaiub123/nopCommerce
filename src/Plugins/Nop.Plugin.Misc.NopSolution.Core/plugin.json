@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "nopSolution Core",
+  "SystemName": "Misc.NopSolution.Core",
+  "Version": "4.70",
+  "SupportedVersions": [ "4.70" ],
+  "Author": "nopSolution Team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.NopSolution.Core.dll",
+  "Description": "Hassle free vendor registation. Don't need to do anyting from admin. Just need to approve the vendor.After creating account vendor will get email automatically."
+}
