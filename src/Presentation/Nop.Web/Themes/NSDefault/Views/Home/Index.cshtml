@@ -1,0 +1,163 @@
+﻿@using Nop.Services.Localization
+@using Nop.Core
+@inject ILocalizationService localizationService
+@inject IStoreContext storeContext
+
+@{
+    Layout = "_ColumnsOne";
+
+    var homepageTitle = await localizationService.GetLocalizedAsync(await storeContext.GetCurrentStoreAsync(), s => s.HomepageTitle);
+
+    //title
+    if (!string.IsNullOrEmpty(homepageTitle))
+    {
+        NopHtml.AddTitleParts(homepageTitle);
+    }
+
+    var homepageDescription = await localizationService.GetLocalizedAsync(await storeContext.GetCurrentStoreAsync(), s => s.HomepageDescription);
+
+    //meta
+    if (!string.IsNullOrEmpty(homepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(homepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@*Main Slider*@
+@section HomePageSlider {
+    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_top" })
+}
+<div class="page home-page">
+
+ <style type="text/css">
+
+
+ /* Tabs*/
+
+    .tab .nav-tabs {
+        border: none;
+        margin: 0;
+    }
+    .tab .nav-tabs li a {
+        padding: 10px;
+        margin-right: 20px;
+        color: var(--grey-black);
+        border: none;
+        border-radius: 0;
+        z-index: 2;
+        position: relative;
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .tab .nav-tabs li a:hover,
+    .tab .nav-tabs li.active a {
+        border: none;
+    }
+    .tab .nav-tabs li a:before {
+        content: "";
+        width: 100%;
+        height: 4px;
+        background: #f6f6f6;
+        border: 1px solid #e9e9e9;
+        border-radius: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .tab .nav-tabs li a:after {
+        content: "";
+        width: 0;
+        height: 4px;
+        background: #727cb6;
+        border: 1px solid #727cb6;
+        border-radius: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        transition: all 1s ease 0s;
+    }
+    .tab .nav-tabs li:hover a:after,
+    .tab .nav-tabs li.active a:after {
+        width: 100%;
+        opacity: 1;
+    }
+    .tab .tab-content {
+        padding: 15px 20px;
+        margin-top: 20px;
+        font-size: 17px;
+        color: #fff;
+        letter-spacing: 1px;
+        line-height: 30px;
+        position: relative;
+    }
+
+    .tab ul{
+        display: flex;
+        padding: 15px;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .tab .nav-tabs li {
+        text-align: center;
+        margin-bottom: 15px;
+        flex: 0 1 20%;
+    }
+    .tab .tab-content {
+        margin-top: 0;
+    }
+
+    </style>
+    <div class="page-body">
+        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "HomepageText" })
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
+        @await Component.InvokeAsync(typeof(HomepageCategoriesViewComponent))
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeProducts })
+        @await Component.InvokeAsync(typeof(HomepageProductsViewComponent))
+
+  <!-- Tabs -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab" role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active product-title"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Plugin</a></li>
+                            <li role="presentation" class="product-title"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Theme</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                @await Component.InvokeAsync(typeof(HomepageProductsViewComponent))
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                <h3>Section 2</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis
+                                    mi varius.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- ./Tabs -->
+               
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
+        @await Component.InvokeAsync(typeof(HomepageBestSellersViewComponent))
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
+        @await Component.InvokeAsync(typeof(HomepageNewsViewComponent))
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
+        @await Component.InvokeAsync(typeof(HomepagePollsViewComponent))
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HomepageBottom })
+    </div>
+</div>
