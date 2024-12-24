@@ -13,7 +13,7 @@ using Nop.Web.Framework.Components;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Vendors;
 
-namespace Nop.Plugin.Misc.VendorRegistration.Components;
+namespace Nop.Plugin.Misc.NopSolution.Components;
 public class RegisterPageViewComponent : NopViewComponent
 {
     protected readonly IVendorRegistrationService _productDemoService;

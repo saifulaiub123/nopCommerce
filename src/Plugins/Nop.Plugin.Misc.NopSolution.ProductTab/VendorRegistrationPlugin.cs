@@ -77,7 +77,7 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
     {
         return Task.FromResult<IList<string>>(new List<string>
         {
-            PublicWidgetZones.RegisterTop
+            PublicWidgetZones.HomepageBeforeBestSellers
         });
     }
 
@@ -98,8 +98,8 @@ public class VendorRegistrationPlugin : BasePlugin, IWidgetPlugin
     {
         ArgumentNullException.ThrowIfNull(widgetZone);
 
-        if (widgetZone.Equals(PublicWidgetZones.RegisterTop))
-            return typeof(RegisterPageViewComponent);
+        if (widgetZone.Equals(PublicWidgetZones.HomepageBeforeBestSellers))
+            return typeof(ProductTabViewComponent);
 
         return null;
     }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
-using Nop.Plugin.Misc.NopSolution.ProductTab.Models;
 using Nop.Plugin.Misc.VendorRegistration.Models;
 using Nop.Plugin.Misc.VendorRegistration.Services;
 using Nop.Services.Configuration;
@@ -15,14 +14,14 @@ using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Vendors;
 
 namespace Nop.Plugin.Misc.VendorRegistration.Components;
-public class ProductTabViewComponent : NopViewComponent
+public class RegisterPageViewComponent : NopViewComponent
 {
     protected readonly IVendorRegistrationService _productDemoService;
     protected readonly ISettingService _settingService;
     protected readonly IStoreContext _storeContext;
     protected readonly IVendorModelFactory _vendorModelFactory;
 
-    public ProductTabViewComponent(
+    public RegisterPageViewComponent(
         IVendorRegistrationService productDemoService,
         ISettingService settingService,
         IStoreContext storeContext,
@@ -36,8 +35,9 @@ public class ProductTabViewComponent : NopViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
     {
-        var model = new ProductTabModel();
-        return View("~/Plugins/Misc.NopSolution.ProductTab/Views/ProductTabPublic.cshtml",model);
+        var model = new ApplyVendorModel();
+        model = await _vendorModelFactory.PrepareApplyVendorModelAsync(model, true, false, null);
+        return View("~/Plugins/Misc.NopHunter.VendorRegistration/Views/RegistrationPageView.cshtml",model);
     }
 
     //public class ProductDemoEventConsumer : IConsumer<AdminProductDetailsCreated>
