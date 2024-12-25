@@ -51,7 +51,7 @@ $(document).ready(function () {
         dots: false,
         nav: true,
         margin: 30,
-        navText: ["prev", "next"],
+        navText: ["<", ">"],
         autoPlay: false,
         lazyLoad: true,
         responsive: {
