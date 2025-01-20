@@ -112,6 +112,8 @@
 
   <ItemGroup>
     <Folder Include="Content\Css\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Domain\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>

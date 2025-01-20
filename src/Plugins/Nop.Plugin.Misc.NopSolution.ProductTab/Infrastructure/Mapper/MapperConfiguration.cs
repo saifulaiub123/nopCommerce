@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Nop.Core.Infrastructure.Mapper;
-using Nop.Plugin.Misc.VendorRegistration.Domain;
-using Nop.Plugin.Misc.VendorRegistration.Models;
 
 namespace Nop.Plugin.Misc.VendorRegistration.Infrastructure.Mapper;
 public class MapperConfiguration : Profile, IOrderedMapperProfile
@@ -10,8 +8,8 @@ public class MapperConfiguration : Profile, IOrderedMapperProfile
 
     public MapperConfiguration()
     {
-        CreateMap<ProductDemo, ProductDemoModel>();
-        CreateMap<ProductDemoModel, ProductDemo>();
+        //CreateMap<ProductDemo, ProductDemoModel>();
+        //CreateMap<ProductDemoModel, ProductDemo>();
     }
 
     #endregion

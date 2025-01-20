@@ -2,7 +2,6 @@
 using Nop.Data;
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
-using Nop.Plugin.Misc.VendorRegistration.Domain;
 
 namespace Nop.Plugin.Misc.VendorRegistration.Data.Migrations;
 
@@ -14,8 +13,8 @@ public class SchemaMigration : Migration
     {
         if (!DataSettingsManager.IsDatabaseInstalled())
             return;
-        if (!Schema.Table(nameof(ProductDemo)).Exists())
-            Create.TableFor<ProductDemo>();
+        //if (!Schema.Table(nameof(ProductDemo)).Exists())
+        //    Create.TableFor<ProductDemo>();
     }
     public override void Down()
     {

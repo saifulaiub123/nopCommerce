@@ -1,7 +1,6 @@
 ﻿using FluentMigrator;
 using Nop.Data.Migrations;
 using Nop.Data;
-using Nop.Plugin.Misc.VendorRegistration.Domain;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Affiliates;
 using Nop.Data.Extensions;
@@ -16,13 +15,13 @@ public class SchemaUpdate_4_80_3 : Migration
     {
         if (!DataSettingsManager.IsDatabaseInstalled())
             return;
-        if (Schema.Table(nameof(ProductDemo)).Column("ShowInProductPictureBottom").Exists())
-            Delete.Column("ShowInProductPictureBottom").FromTable(nameof(ProductDemo));
+        //if (Schema.Table(nameof(ProductDemo)).Column("ShowInProductPictureBottom").Exists())
+        //    Delete.Column("ShowInProductPictureBottom").FromTable(nameof(ProductDemo));
 
-        if (!Schema.Table(nameof(ProductDemo)).Exists())
-            Create.Table("Test123")
-            .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
-            .WithColumn("ProductId").AsInt32().ForeignKey<Product>().OnDelete(Rule.None);
+        //if (!Schema.Table(nameof(ProductDemo)).Exists())
+        //    Create.Table("Test123")
+        //    .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
+        //    .WithColumn("ProductId").AsInt32().ForeignKey<Product>().OnDelete(Rule.None);
         //.WithColumn(nameof(Affiliate.AddressId)).AsInt32().ForeignKey<Address>().OnDelete(Rule.None);
     }
     public override void Down()

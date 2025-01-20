@@ -64,6 +64,631 @@
     <Content Update="**\*.config;**\*.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Themes\NSDefaultClean\Content\css\print.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\BackInStockSubscription\CustomerSubscriptions.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\BackInStockSubscription\SubscribePopup.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Blog\BlogPost.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Blog\Components\BlogMonths\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Blog\Components\BlogTags\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Blog\List.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\ActiveDiscussions.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Components\ForumActiveDiscussionsSmall\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Components\ForumBreadcrumb\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Components\ForumLastPost\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\CustomerForumSubscriptions.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Forum.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\ForumGroup.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\PostCreate.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\PostEdit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Search.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\Topic.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\TopicCreate.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\TopicEdit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\TopicMove.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_ActiveTopics.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_CreateUpdatePost.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_CreateUpdateTopic.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_ForumGroup.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_ForumHeader.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_ForumPost.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Boards\_SearchBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\ManufacturerAll.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\ManufacturerTemplate.ProductsInGridOrLines.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\NewProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\ProductsByTag.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\ProductTagsAll.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\Search.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\Vendor.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\VendorAll.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_CatalogFilters.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_CatalogProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_CatalogSelectors.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_FilterManufacturerBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_FilterPriceBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_FilterSpecsBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Catalog\_ProductsInGridOrLines.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\BillingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\Completed.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\Confirm.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OnePageCheckout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcBillingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcConfirmOrder.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcPaymentInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcPaymentMethods.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcShippingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\OpcShippingMethods.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\PaymentInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\PaymentMethod.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\ShippingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\ShippingMethod.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Checkout\_PickupPoints.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Common\ContactUs.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Common\ContactVendor.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Common\PageNotFound.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Common\Sitemap.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Common\StoreClosed.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\AccountActivation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\AddressAdd.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\AddressEdit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\Addresses.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\Avatar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\ChangePassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\CheckGiftCardBalance.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\ConfigureMultiFactorAuthenticationProvider.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\DownloadableProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\EmailRevalidation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\GdprTools.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\Info.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\MultiFactorAuthentication.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\MultiFactorVerification.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\PasswordRecovery.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\PasswordRecoveryConfirm.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\Register.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\RegisterResult.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\UserAgreement.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\_CheckUsernameAvailability.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\_CustomerAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\_ExternalAuthentication.Errors.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Customer\_MultiFactorAuthenticationProviders.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Home\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Install\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Install\_Install.ConnectionString.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Install\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Newsletter\SubscriptionActivation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\News\List.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\News\NewsItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Order\CustomerOrders.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Order\CustomerRewardPoints.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Order\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Order\ShipmentDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\PrivateMessages\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\PrivateMessages\SendPM.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\PrivateMessages\ViewPM.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\CompareProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\CustomerProductReviews.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\ProductEmailAFriend.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\ProductTemplate.Grouped.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\ProductTemplate.Simple.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\RecentlyViewedProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_AddToCart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_AddToWishlist.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_Availability.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_BackInStockSubscription.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_CompareProductsButton.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_DeliveryInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_Discontinued.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_DownloadSample.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_GiftCardInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductBreadcrumb.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductDetailsPictures.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductDetailsVideos.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductEmailAFriendButton.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductEstimateShipping.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductManufacturers.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductPrice.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductReviewHelpfulness.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductReviewOverview.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductReviews.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductSpecifications.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductTags.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ProductTierPrices.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_RentalInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_ShareButton.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Product\_SKU_Man_GTIN_Ven.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Profile\Components\ProfileInfo\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Profile\Components\ProfilePosts\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Profile\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ReturnRequest\CustomerReturnRequests.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ReturnRequest\ReturnRequest.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\AdminHeaderLinks\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\BlogRssHeaderLink\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\CategoryNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\CheckoutProgress\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\CrossSellProducts\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\CurrencySelector\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\CustomerNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\EuCookieLaw\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\ExternalMethods\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\Favicon\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\FlyoutShoppingCart\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\Footer\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HeaderLinks\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HomepageBestSellers\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HomepageCategories\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HomepageNews\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HomepagePolls\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\HomepageProducts\Default.cshtml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\LanguageSelector\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\Logo\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\ManufacturerNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\NewsletterBox\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\NewsRssHeaderLink\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\OrderSummary\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\OrderTotals\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\PollBlock\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\PopularProductTags\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\PrivateMessagesInbox\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\PrivateMessagesSentItems\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\ProductsAlsoPurchased\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\RecentlyViewedProductsBlock\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\RelatedProducts\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\SearchBox\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\SelectedCheckoutAttributes\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\ShoppingCartEstimateShipping\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\SocialButtons\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\StoreThemeSelector\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\TaxTypeSelector\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\TopicBlock\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\TopMenu\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\VendorNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\Components\Widget\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_AddressAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_CheckoutAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_ColumnsOne.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_ColumnsTwo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_CreateOrUpdateAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_DiscountBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_EstimateShippingPopUp.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Header.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_JavaScriptDisabledWarning.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Notifications.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_OrderReviewData.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Poll.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Print.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_ProductBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Root.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Shared\_Root.Head.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ShoppingCart\Cart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ShoppingCart\EmailWishlist.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ShoppingCart\Wishlist.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\ShoppingCart\_GiftCardBox.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Topic\TopicDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Vendor\ApplyVendor.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Vendor\Info.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\NSDefaultClean\Views\Vendor\_VendorAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
   <!-- This target execute after "Build" target.
     We use it to clean up folder with plugins from unnecessary and obsolete libraries. -->
   <Target Name="NopTarget" AfterTargets="Build">
